@@ -1,0 +1,123 @@
+﻿.logo{
+	height:50px;
+	width:50px;	
+	float: left;
+	background-image:url('heart3.png');
+        background-repeat:no-repeat;
+	background-size:cover;
+	padding:10px;
+	margin:10px;
+}
+#title{
+
+	text-align: center;
+}
+.body-button{
+	border-radius: 50%;
+	height: 80px;
+	margin:auto;
+	padding: 16px 32px;
+	text-align: center;
+	font-size: 32px;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+#menu-button{
+	background-color: #ff674f;
+	color:black;
+}
+#menu-button:hover{
+	background-color: aqua;
+	color:black;
+}
+
+#login-button:hover{
+	background-color: azure;
+	color:black;
+}
+
+#logout-button:hover{
+	background-color: azure;
+	color:black;
+}
+
+#signup-button:hover{
+	background-color: azure;
+	color:black;
+}
+
+div{
+	display:block;
+}
+
+hr{
+    border-top-style: solid;
+    border-color: black;  
+}
+h1 {
+   color: #ff674f;
+  /*color : cd853f; brown*/
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 50px;
+}
+.header-container{
+	background-color:#90ee90;
+	width:1200px;
+	height: 100px;
+	margin:0px auto;
+	padding:20px;
+	border:1px solid #bcbcbc;}
+
+/*.header-container{
+	padding:20px;
+	margin:auto;
+	/*margin-bottom:20px;*/
+
+	/*border:1px solid #bcbcbc;}
+*/
+
+
+.body-container{
+	width:1200px;
+	padding:20px;
+
+	marin-bottom:20px;
+	float:left;
+	border:1px solid #bcbcbc;
+	text-align: center;
+}
+.footer-container{
+	clear:both;
+	padding:20px;
+	border:1px solid #bcbcbc;
+	text-align:center}
+
+.signupinForm {
+	background-color:yellow;
+	font-weight:900;
+	font-size:19px;
+    	letter-spacing: 8px;
+    float: right;
+    padding: 10px 10px 10px 10px;
+    line-height: 12px;
+}
+.signupinForm > li {
+    float: left;
+    margin: 0 6px 0 0;
+    padding: 0 6px 0 0;
+    position: relative;
+    line-height: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+}
+.signupinForm > li >a {
+    color: #7b68ee;
+padding: 0px 10px;
+line-heignt: 25px;
+text-decoration:none;
+font-size:16px;
+letter-spacing: .1em;
+}
