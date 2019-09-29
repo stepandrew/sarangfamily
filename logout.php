@@ -4,8 +4,13 @@
             	  require_once('header.php');
           	?>
    </div>
-<p1> Good by </p1>
-  <div class="footer-container">
+
+       <div id = "login">
+           <h2>Please visit  Saranfamily homepage again<h2>
+           <h2>This page is under construction<h2>
+       </div>
+
+<p1> Good by </p1>  <div class="footer-container">
 
 	<?php
  	   require_once('footer.php');
