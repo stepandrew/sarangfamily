@@ -1,8 +1,5 @@
 
 <head>
-
-
-
     	<link rel="shortcut icon" href="flag32.ico" type="image/x-icon">
 
 </head>
@@ -14,12 +11,18 @@
 	?>
   <div class="body-container">
     	<h2>Welcome to SarangFamily</h2>
-
- 	<button class="body-button" id="menu-button">home</button>
-    <button class="body-button" id="login-button">login</button>
-    <button class="body-button" id="logout-button">logout</button>
-    <button class="body-button" id="signup-button">signup</button>
-
+ <a href="lifeInformation.php">
+ 	<button class="body-button" id="life-button">Life Information</button>
+ </a>
+  <a href="gallery.php">
+    <button class="body-button" id="gallery-button">Gallery</button>
+  </a>
+   <a href="family.php">
+    <button class="body-button" id="family-button">Family</button>
+    </a>
+     <a href="healthBeauty.php">
+    <button class="body-button" id="health-button">Health & Beauty</button>
+ </a>
 
 
 
