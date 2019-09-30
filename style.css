@@ -3,7 +3,7 @@
 	width:50px;	
 	float: left;
 	background-image:url('heart3.png');
-        background-repeat:no-repeat;
+	background-repeat:no-repeat;
 	background-size:cover;
 	padding:10px;
 	margin:10px;
@@ -26,7 +26,7 @@
 body{
 
 	width: 95%;
-	min-height: 500px;
+	min-height: 75%;
 	padding: 20px;
 	margin-bottom: 20px;
 	float: left;
@@ -57,7 +57,7 @@ body{
 	cursor: pointer;
 }
 .buttonmargine{
-	margin-bottom: 200px;
+	margin-bottom: 50px;
 }
 #life-button{
 	background-color: #ff674f;
