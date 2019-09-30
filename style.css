@@ -12,9 +12,42 @@
 
 	text-align: center;
 }
+.header-container{
+
+	background-color:#90ee90;
+	width: 90%;
+	height: 100px;
+	margin:0px auto;
+	padding:20px;
+	border:1px solid #bcbcbc;
+
+}
+
+body{
+
+	width: 95%;
+	min-height: 500px;
+	padding: 20px;
+	margin-bottom: 20px;
+	float: left;
+	border: 1px solid #bcbcbc;
+	text-align: center;
+	align-content: center;
+}
+
+.footer-container{
+	width: 90%;
+	height: 30px;
+	padding:20px;
+	margin:0px auto;
+	border:1px solid #bcbcbc;
+	text-align:center;
+
+}
 .body-button{
 	border-radius: 50%;
-	height: 80px;
+	max-height: 100px;
+
 	margin:auto;
 	padding: 16px 32px;
 	text-align: center;
@@ -23,26 +56,38 @@
 	transition-duration: 0.4s;
 	cursor: pointer;
 }
-#menu-button{
+.buttonmargine{
+	margin-bottom: 200px;
+}
+#life-button{
 	background-color: #ff674f;
 	color:black;
 }
-#menu-button:hover{
+#life-button:hover{
 	background-color: aqua;
 	color:black;
 }
-
-#login-button:hover{
+#gallery-button{
+	background-color: coral;
+	color:black;
+}
+#gallery-button:hover{
 	background-color: azure;
 	color:black;
 }
-
-#logout-button:hover{
+#family-button{
+	background-color: blueviolet;
+	color:black;
+}
+#family-button:hover{
 	background-color: azure;
 	color:black;
 }
-
-#signup-button:hover{
+#health-button {
+	background-color: darkseagreen;
+	color:black;
+}
+#health-button:hover{
 	background-color: azure;
 	color:black;
 }
@@ -62,13 +107,7 @@ h1 {
   font-family: Helvetica;
   font-size: 50px;
 }
-.header-container{
-	background-color:#90ee90;
-	width:1200px;
-	height: 100px;
-	margin:0px auto;
-	padding:20px;
-	border:1px solid #bcbcbc;}
+
 
 /*.header-container{
 	padding:20px;
@@ -79,31 +118,16 @@ h1 {
 */
 
 
-.body-container{
-	width:1200px;
-	padding:20px;
-
-	marin-bottom:20px;
-	float:left;
-	border:1px solid #bcbcbc;
-	text-align: center;
-}
-.footer-container{
-	clear:both;
-	padding:20px;
-	border:1px solid #bcbcbc;
-	text-align:center}
-
 .signupinForm {
 	background-color:yellow;
 	font-weight:900;
 	font-size:19px;
-    	letter-spacing: 8px;
+	letter-spacing: 8px;
     float: right;
     padding: 10px 10px 10px 10px;
     line-height: 12px;
 }
-.signupinForm > li {
+.signupinForm  li {
     float: left;
     margin: 0 6px 0 0;
     padding: 0 6px 0 0;

@@ -1,4 +1,4 @@
-﻿
+﻿<html>
 <?php
 session_start();
 ?>
@@ -12,13 +12,14 @@ session_start();
           	?>
    </div>
 
-    <html>
+
      <body>
         <div id = "login">
             <h2>login here Saranfamily homepage<h2>
             <h2>This page is under construction<h2>
         </div>
-        <form method="POST" action = "login-handler.php" autocomplete = "off">
+        <div>
+         <form method="POST" action = "login-handler.php" autocomplete = "off">
             email:<br>
             <input type = "text" name = "email" >
             <br>
@@ -27,7 +28,9 @@ session_start();
             <br>
             <br>
             <input type="submit" value ="Submit">
+
          </form>
+         </div>
 
 
 
@@ -35,10 +38,10 @@ session_start();
 
 
 
-</html>
   <div class="footer-container">
 
 	<?php
  	   require_once('footer.php');
 	?>
     </div>
+</html>

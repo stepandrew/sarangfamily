@@ -5,8 +5,17 @@
             	  require_once('header.php');
           	?>
    </div>
-  <div class="footer-container">
 
+   <html>
+   	<h2>This pate is for health and beauty care. </h2>
+       <h2>This page is under construction<h2>
+
+
+   </html>
+
+
+
+  <div class="footer-container">
 	<?php
  	   require_once('footer.php');
 	?>
