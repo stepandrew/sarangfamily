@@ -1,6 +1,7 @@
 <html>
 <head>
-    	<link rel="shortcut icon" href="flag32.ico" type="image/x-icon">
+    	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://damp-mountain-91968.herokuapp.com/favicon.ico" type="image/x-icon"/>
 
 </head>
 <body>
