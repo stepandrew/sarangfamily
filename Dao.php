@@ -8,7 +8,15 @@
 <body>
 	<?php
 	require_once("config.php");
+	
 	class Dao{
+		
+		private $host = 'us-cdbr-iron-east-05.cleardb.net';
+		private $db = 'heroku_f4584639f739b09';
+		private $user = 'b1b2fd935ca956';
+  		private $pass = '340e5b69';
+
+		
 		/**
 	 * Creates and returns a PDO connection using the database connection
 	 * url specified in the CLEARDB_DATABASE_URL environment variable.
@@ -35,6 +43,7 @@
 	 */
 	public function getConnectionStatus()
 	{
+	
 		$conn = $this->getConnection();
 		return $conn->getAttribute(constant("PDO::ATTR_CONNECTION_STATUS"));
 	}
