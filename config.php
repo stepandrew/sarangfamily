@@ -12,9 +12,9 @@
 		putenv("CLEARDB_DATABASE_URL=$localhost_cleardb_url");
 	}
   $DB_host = 'us-cdbr-iron-east-05.cleardb.net';
-		$DB_database = 'heroku_f4584639f739b09';
-		$DB_username = 'b1b2fd935ca956';
-		$DB_password = '340e5b69';
+  $DB_database = 'heroku_f4584639f739b09';
+  $DB_username = 'b1b2fd935ca956';
+  $DB_password = '340e5b69';
 
 	?>
 	
