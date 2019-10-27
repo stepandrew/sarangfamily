@@ -6,7 +6,12 @@ echo print_r($_COOKIE, 1);
 
 <html>
  <body>
+ <div class="header-container">
 
+				<?php
+					  require_once('header.php');
+				?>
+	   </div>
   <?php 
 	 echo print_r($_POST,1);
 	 
@@ -40,5 +45,11 @@ echo print_r($_COOKIE, 1);
 			<span id="emailError" class="error"> <?php $emailError ?></span>
 		 <?php } ?>
 	<p> Password Match: <?php echo htmlspecialchars($password_match) ?></p>
+	  <div class="footer-container">
+
+	<?php
+ 	   require_once('footer.php');
+	?>
+    </div>
  </body>
  </html>
