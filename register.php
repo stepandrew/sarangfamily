@@ -41,10 +41,16 @@
 
         <br>
         <br>
-        <input type="submit" value ="Submit"/>
-        <input type="reset">
+        <button type="submit" value ="Submit"/>
+        <button type="reset" />
 		</fieldset>
      </form>
+	<?php 
+	$error = isset( $_GET['error']) ? $_GET['error'] : false;
+	if($error == true){
+		?>
+	<span> OH NO, Your input was incorrect! </span>
+	<?php } ?>
 
 </section>
   <div class="footer-container">
