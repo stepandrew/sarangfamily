@@ -41,8 +41,8 @@
 
         <br>
         <br>
-        <button type="submit" value ="Submit"/>
-        <button type="reset" />
+			<button type="submit" value ="Submit">Submit</button>
+        <button type="reset" >Reset</button>
 		</fieldset>
      </form>
 	<?php 
