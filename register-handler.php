@@ -14,6 +14,7 @@ session_start();
 
 $error = array();
 
+
    $mysqli= new MySQLi( $DB_host,$DB_username,$DB_password,$DB_database);
  if($stmt ->connect_error){
 	 exit('Error connecting to database');
@@ -104,7 +105,7 @@ try{
    //       $dao ->getConnectionStatus();
 	//	  $dao->saveUser($email, $password);
 
-		 }
+		// }
 
 
 		// header('Location:home.php');
