@@ -12,15 +12,31 @@ session_start();
   $DB_username = 'b1b2fd935ca956';
   $DB_password = '340e5b69';
 
+$error = array();
+
    $mysqli= new MySQLi( $DB_host,$DB_username,$DB_password,$DB_database);
-  		 //database name
-   $stmt= $mysqli->prepare("INSERT INTO register(FirstName, LastName, Email, password, Birthday) VALUE(?,?,?,?,?)");
+ if($stmt ->connect_error){
+	 exit('Error connecting to database');
+ }
+try{
+	 $stmt= $mysqli->prepare("INSERT INTO register(FirstName, LastName, Email, password, Birthday) VALUE(?,?,?,?,?)");
    $stmt -> bind_param('sssss',$firstName, $lastName,$email ,$password,$birthday );
-   if($stmt -> execute()){
-  			 echo hi;
-  	}else{
-  			 print $mysqli ->error;
-  		 }
+	$stmt -> execute();
+	$stmt -> store_result();
+	
+	if($stmt->num_rows >0){
+		$error['status']="This username already exits!";
+	}
+	$stmt->close();
+}catch(Exception $e){
+	$error['status']="Error occured";
+}
+  
+//   if($stmt -> execute()){
+//  			 echo hi;
+//  	}else{
+//  			 print $mysqli ->error;
+//  		 }
 
 
 //register
