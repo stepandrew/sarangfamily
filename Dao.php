@@ -23,18 +23,16 @@
 	 */
 		private function getConnection()
 	{
-		$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-		$host = $url["host"];
-		$db   = substr($url["path"], 1);
-		$user = $url["user"];
-		$pass = $url["pass"];
-
-		$conn = new PDO("mysql:host=$host;dbname=$db;", $user, $pass);
-
-		// Turn on exceptions for debugging. Comment this out for
-		// production or make sure to use try-catch statements.
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		try{
+			$conn = new PDO("mysql:host={$this-> host};db={$this-> db}", 
+						$this->user, $this->pass);
+			
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			
+		}catch(Exception $e){
+			echo print_r($e, 1);
+		}
+		//$conn = new PDO("mysql:host=$host;dbname=$db;", $user, $pass);
 
 		return $conn; 
 	}
@@ -63,6 +61,29 @@
 			return false;
 		}
 	}
+	 public function getComments() {
+		$conn = $this->getConnection();
+		try {
+		return $conn->query("select comment_id, comment, date_entered  from comment order by date_entered asc", PDO::FETCH_ASSOC);
+		} catch(Exception $e) {
+		  echo print_r($e,1);
+		  exit;
+		}
+	  }
+	 public function saveComment ($comment) {
+		$conn = $this->getConnection();
+		$saveQuery = "insert into comment (comment) values (:comment)";
+		$q = $conn->prepare($saveQuery);
+		$q->bindParam(":comment", $comment);
+		$q->execute();
+  }
+  public function deleteComment ($id) {
+		$conn = $this->getConnection();
+		$deleteQuery = "delete from comment where comment_id = :id";
+		$q = $conn->prepare($deleteQuery);
+		$q->bindParam(":id", $id);
+		$q->execute();
+  }
 }
 ?>
 	
