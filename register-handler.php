@@ -20,7 +20,7 @@ $error = array();
 	 exit('Error connecting to database');
  }
 try{
-	 $stmt= $mysqli->prepare("INSERT INTO register(FirstName, LastName, Email, password, Birthday) VALUE(?,?,?,?,?)");
+	 $stmt= $mysqli->prepare("INSERT INTO register(FirstName, LastName, Email, password, BirthDay) VALUE(?,?,?,?,?)");
    $stmt -> bind_param('sssss',$firstName, $lastName,$email ,$password,$birthday );
 	$stmt -> execute();
 	$stmt -> store_result();
