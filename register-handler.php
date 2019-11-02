@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'Dao.php';
 
 //register
      $firstName = filter_var($_POST["firstName"], FILTER_SANITIZE_STRING);
@@ -11,9 +12,23 @@ session_start();
 	 $valid = true;
 
 
+		 // TODO 
+		 // save new user to the database
+		
+//		 $error = array();
+		 try{
+	  $dao = new Dao();
+	 // $dao ->getConnection();
+	 // $dao ->getConnectionStatus();
+	  $dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
+
+		 }catch(Exception $e){
+			$error['status']="Error occured";
+		 }
 
 
 
+/*
 	 function valid_length($field, $min, $max){
 		 $trimmed = trim ($field);
 		 return (strlen($trimmed) >= $min && strlen($trimmed) <= $max);
@@ -45,7 +60,7 @@ session_start();
 		 $passwordMatchError = "Passwords do not match.";
 	 }
 
-
+*/
 
 	// if($valid == true){
 	 /*
@@ -56,21 +71,6 @@ session_start();
 
 		*/
 		 
-		 
-		 // TODO 
-		 // save new user to the database
-		 require_once 'Dao.php';
-//		 $error = array();
-		 try{
-	  $dao = new Dao();
-	 // $dao ->getConnection();
-	 // $dao ->getConnectionStatus();
-	  $dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
-
-		 }catch(Exception $e){
-			$error['status']="Error occured";
-		 }
-
 
 		// header('Location:home.php');
 	// }else{
