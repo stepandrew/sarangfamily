@@ -59,17 +59,17 @@ session_start();
 		 
 		 // TODO 
 		 // save new user to the database
-//		 require_once 'Dao.php';
+		 require_once 'Dao.php';
 //		 $error = array();
-//		 try{
-	//  $dao = new Dao();
-	//  $dao ->getConnection();
-			 //$dao ->getConnectionStatus();
-	//	  $dao->saveUser($email, $password);
+		 try{
+	  $dao = new Dao();
+	 // $dao ->getConnection();
+	 // $dao ->getConnectionStatus();
+	  $dao->addUser($firstName, $lastName,$email,$password, $birthday );
 
-//		 }catch(Exception $e){
-//	$error['status']="Error occured";
-//}
+		 }catch(Exception $e){
+			$error['status']="Error occured";
+		 }
 
 
 		// header('Location:home.php');

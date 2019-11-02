@@ -8,26 +8,21 @@
 		private $user = 'b1b2fd935ca956';
   		private $pass = '340e5b69';
 
-				/**
-	 * Creates and returns a PDO connection using the database connection
-	 * url specified in the CLEARDB_DATABASE_URL environment variable.
-	 */
+/**
+ * Creates and returns a PDO connection using the database connection
+ * url specified in the CLEARDB_DATABASE_URL environment variable.
+ */
 		private function getConnection()
 	{
 		try{
 			$conn = new PDO("mysql:host={$this->host};dbname={$this->db}", 
-						$this->user, $this->pass);
-			
-			//$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			
+						$this->user, $this->pass);			
 		}catch(Exception $e){
 			echo print_r($e, 1);
 		}
-		//$conn = new PDO("mysql:host=$host;dbname=$db;", $user, $pass);
-
 		return $conn; 
 	}
-		public function addUser($input){
+/*		public function addUser($input){
 			$conn = $this->getConnection();
 			$saveInput = "insert into user (email) values (:input)";
 			$q=$conn->prepare($saveInput);
@@ -35,7 +30,15 @@
 			$q->execute();
 			
 		}
-
+*/
+		public function addUser($input){
+			$conn = $this->getConnection();
+			$saveInput = "insert into register (firstname, lastname, email, password, birthday) values (:input, :input, :input, :input, :input)";
+			$q=$conn->prepare($saveInput);
+			$q->bindParam(":input", $input);
+			$q->execute();
+			
+		}
 	/**
 	 * Returns the database connection status string.
 	 */
