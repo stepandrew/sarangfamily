@@ -1,9 +1,9 @@
 ﻿<html>
 <?php
 session_start();
-$email = $_POST['email'];
-$password = $_POST['password'];
-$errors = array();
+//$email = $_POST['email'];
+//$password = $_POST['password'];
+//$errors = array();
 
 	
 	

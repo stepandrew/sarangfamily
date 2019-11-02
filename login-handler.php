@@ -9,7 +9,7 @@ $username = $_POST['email'];
 $password = $_POST['password'];
 $users = $dao->getUsers();
 echo $users;
-$dao->addUser("andrew@gmail.com");
+$dao->addUser($username);
 //echo $dao->getConnectionStatus();
 
 
