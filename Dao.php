@@ -31,11 +31,27 @@
 			
 		}
 */
-		public function addUser($input){
+		// public function getRegiser(){
+		// 	$conn = $this->getConnection();
+		// 	return $conn ->query("select id from register")
+		// }
+		// public function getRegiser($id){
+		// 	$conn = $this->getConnection();
+		// 	$getQuery="Select id, firstname, lastname, email, password, birthday from register where id=:id";
+		// 	$q=$conn->prepare($getQuery);
+		// 	$q->bindParm(":id", $id);
+		// 	$q->execute();
+		// 	return reset($q-> fetchAll());
+		// }
+		public function saveRegister($firstname, $lastname,$email,$password,$birthday){
 			$conn = $this->getConnection();
-			$saveInput = "insert into register (firstname, lastname, email, password, birthday) values (:input, :input, :input, :input, :input)";
+			$saveInput = "insert into register (firstname, lastname, email, password, birthday) values (:firstname, :lastname,:email,:password,:birthday)";
 			$q=$conn->prepare($saveInput);
-			$q->bindParam(":input", $input);
+			$q->bindParam(":firstname", $firstname);
+			$q->bindParam(":lastname", $lastname);
+			$q->bindParam(":email", $email);
+			$q->bindParam(":password", $password);
+			$q->bindParam(":birthday", $birthday);
 			$q->execute();
 			
 		}

@@ -65,7 +65,7 @@ session_start();
 	  $dao = new Dao();
 	 // $dao ->getConnection();
 	 // $dao ->getConnectionStatus();
-	  $dao->addUser($firstName, $lastName,$email,$password, $birthday );
+	  $dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
 
 		 }catch(Exception $e){
 			$error['status']="Error occured";
