@@ -1,44 +1,5 @@
 <?php
 session_start();
-/*
-	$localhost_cleardb_url="mysql://b1b2fd935ca956:340e5b69@us-cdbr-iron-east-05.cleardb.net/heroku_f4584639f739b09?reconnect=true";
-	if(!getenv("CLEARDB_DATABASE_URL")){
-		putenv("CLEARDB_DATABASE_URL=$localhost_cleardb_url");
-	}
-*/
-//Database connection
-  $DB_host = 'us-cdbr-iron-east-05.cleardb.net';
-  $DB_database = 'heroku_f4584639f739b09';
-  $DB_username = 'b1b2fd935ca956';
-  $DB_password = '340e5b69';
-
-$error = array();
-
-
-   $mysqli= new MySQLi( $DB_host,$DB_username,$DB_password,$DB_database);
- if($stmt ->connect_error){
-	 exit('Error connecting to database');
- }
-try{
-	 $stmt= $mysqli->prepare("INSERT INTO register(FirstName, LastName, Email, password, BirthDay) VALUE(?,?,?,?,?)");
-   $stmt -> bind_param('sssss',$firstName, $lastName,$email ,$password,$birthday );
-	$stmt -> execute();
-	$stmt -> store_result();
-	
-	if($stmt->num_rows >0){
-		$error['status']="This username already exits!";
-	}
-	$stmt->close();
-}catch(Exception $e){
-	$error['status']="Error occured";
-}
-  
-//   if($stmt -> execute()){
-//  			 echo hi;
-//  	}else{
-//  			 print $mysqli ->error;
-//  		 }
-
 
 //register
      $firstName = filter_var($_POST["firstName"], FILTER_SANITIZE_STRING);
@@ -86,7 +47,7 @@ try{
 
 
 
-	 if($valid == true){
+	// if($valid == true){
 	 /*
 	 $connection = mysqli_connect($DB_host, $DB_username, $DB_password, $DB_database);
      $my_query = "";
@@ -98,18 +59,21 @@ try{
 		 
 		 // TODO 
 		 // save new user to the database
-	//	 require_once 'Dao.php';
-	//	 try{
-	//	  $dao = new Dao();
-	//	  $dao ->getConnection();
-   //       $dao ->getConnectionStatus();
+//		 require_once 'Dao.php';
+//		 $error = array();
+//		 try{
+	//  $dao = new Dao();
+	//  $dao ->getConnection();
+			 //$dao ->getConnectionStatus();
 	//	  $dao->saveUser($email, $password);
 
-		// }
+//		 }catch(Exception $e){
+//	$error['status']="Error occured";
+//}
 
 
 		// header('Location:home.php');
-	 }else{
-		 header('location: register.php ? error=true');
-	 }
+	// }else{
+	//	 header('location: register.php ? error=true');
+	// }
 	 

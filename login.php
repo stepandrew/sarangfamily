@@ -1,6 +1,16 @@
 ﻿<html>
 <?php
 session_start();
+$email = $_POST['email'];
+$password = $_POST['password'];
+$errors = array();
+
+	
+	
+$my_query = ""; 
+$my_query = "SELECT * FROM users WHERE email = '$email' AND pw = '$password'";
+//$result = mysqli_query($connection, $my_query);
+
 ?>
 
 <html>
@@ -8,11 +18,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-<?php
-if (isset($_SESSION['message'])) {
-   echo "<div class='message'>{$_SESSION['message']}</div>";
-}
-?>
+
 	 <div class="header-container">
 
 				<?php

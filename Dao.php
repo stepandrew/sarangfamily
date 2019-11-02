@@ -7,7 +7,6 @@
 
 <body>
 	<?php
-	require_once("config.php");
 	
 	class Dao{
 		
@@ -16,7 +15,13 @@
 		private $user = 'b1b2fd935ca956';
   		private $pass = '340e5b69';
 
-		
+		public function addUser($input){
+			$conn = $this->getConnection();
+			$saveinput = "insert into user (email) values (:input)";
+			$q->bindParam(":input", $input);
+			$q->execute();
+			
+		}
 		/**
 	 * Creates and returns a PDO connection using the database connection
 	 * url specified in the CLEARDB_DATABASE_URL environment variable.
@@ -27,7 +32,7 @@
 			$conn = new PDO("mysql:host={$this-> host};db={$this-> db}", 
 						$this->user, $this->pass);
 			
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			//$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			
 		}catch(Exception $e){
 			echo print_r($e, 1);
@@ -47,7 +52,7 @@
 	}
 	public function getUsers(){
 		$conn=$this->getConnection();
-		return $conn->query("SELECT * from user");
+		return $conn->query("SELECT * from register", PDO::FETCH_ASSOC);
 	}
 	public function userExists($email){
 		$conn=$this->getConnection();
