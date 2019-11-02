@@ -16,10 +16,10 @@
 		
 		
         First name:<br>
-        	<input type = "text" id ="firstName" name = "firstName" maxlength="50" required/>
+        	<input type = "text" id ="firstName" name = "firstname" maxlength="50" required/>
        		 <br><br>
         Last name: <br>
-      	  	<input type = "text" id= "lastName" name="lastName" required/>
+      	  	<input type = "text" id= "lastName" name="lastname" required/>
 			<br><br>
 		
 	    email:<br>
@@ -37,7 +37,7 @@
           <input type="radio" name="gender" value="female"> Female<br>
           <input type="radio" name="gender" value="other"> Other<br><br> -->
         Birthday:
-        <input type="date" name="bday">
+        <input type="date" name="birthday">
 
         <br>
         <br>
