@@ -17,7 +17,8 @@
 
 		public function addUser($input){
 			$conn = $this->getConnection();
-			$saveinput = "insert into user (email) values (:input)";
+			$saveInput = "insert into user (email) values (:input)";
+			$q=$conn->prepare($saveInput);
 			$q->bindParam(":input", $input);
 			$q->execute();
 			
