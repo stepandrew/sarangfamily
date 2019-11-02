@@ -1,11 +1,4 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Heroku Mysql connection</title>
-</head>
 
-<body>
 	<?php
 	
 	class Dao{
@@ -15,15 +8,7 @@
 		private $user = 'b1b2fd935ca956';
   		private $pass = '340e5b69';
 
-		public function addUser($input){
-			$conn = $this->getConnection();
-			$saveInput = "insert into user (email) values (:input)";
-			$q=$conn->prepare($saveInput);
-			$q->bindParam(":input", $input);
-			$q->execute();
-			
-		}
-		/**
+				/**
 	 * Creates and returns a PDO connection using the database connection
 	 * url specified in the CLEARDB_DATABASE_URL environment variable.
 	 */
@@ -42,6 +27,15 @@
 
 		return $conn; 
 	}
+		public function addUser($input){
+			$conn = $this->getConnection();
+			$saveInput = "insert into user (email) values (:input)";
+			$q=$conn->prepare($saveInput);
+			$q->bindParam(":input", $input);
+			$q->execute();
+			
+		}
+
 	/**
 	 * Returns the database connection status string.
 	 */
@@ -93,5 +87,3 @@
 }
 ?>
 	
-</body>
-</html>
