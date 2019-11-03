@@ -4,7 +4,11 @@
 	class Dao{
 		
 		private $host = 'us-cdbr-iron-east-05.cleardb.net';
+		
+//damp-mountain-91968		
 		private $db = 'heroku_f4584639f739b09';
+//shrouded-sierra-40031 
+//private $db = 'heroku_58c5f9d8f127161';
 		private $user = 'b1b2fd935ca956';
   		private $pass = '340e5b69';
 

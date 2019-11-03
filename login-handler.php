@@ -26,13 +26,27 @@ if($error == true){
 <?php } ?>
 */
 if(empty($errors)) { 
-    if(mysqli_num_rows($users) > 0){
-		//"https://damp-mountain-91968.herokuapp.com/granted.php"
-        header('Location: ' . "granted.php");
+/* To do : email match
+	$matches = array();
+	$string = 'my email is conradkennington@gmail.com';
+	preg_match('/\w+@\w+\.[a-zA-Z]{2,4}/', $string, $matches);
+	echo "<pre>" . print_r($matches,1) . "</pre>";
+*/
+	//if ($email == "annahan@gmail.com" && $password == "1111") {
+	//	$valid = true;
+	  
+	  
+     if(mysqli_num_rows($users) > 0){
+	// 	//"https://damp-mountain-91968.herokuapp.com/granted.php"
+	// 	//https://git.heroku.com/shrouded-sierra-40031.git
+	     header('Location: https://git.heroku.com/shrouded-sierra-40031.git/home.php');
+	//header("Location:home.php");
         exit;
     }
     else{
-        $errors['status'] = "Invalid Email or Password. Try again / Create an account.";
+		$errors['status'] = "Invalid Email or Password. Try again / Create an account.";
+		echo $errors['status'];
+
     }
 } else {
 	$_SESSION["errors"] = $errors;
