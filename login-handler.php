@@ -7,12 +7,12 @@ $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);;
 
 
 //$dao->addUser($username);
-//echo $dao->getConnectionStatus();
+
 $dao= new Dao();
 
 
-//$users = $dao->getUsers($email,$password);
-//echo $users;
+$users = $dao->getUsers($email,$password);
+echo $users;
 
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	$emailError = "Must be valid email address.";
@@ -38,6 +38,7 @@ if(empty($errors)) {
 	//	$valid = true;
 	  
 	  echo "here";
+
      if($users = $dao->getUsers($email,$password)) {
 		 echo $users;
 	// 	//"https://damp-mountain-91968.herokuapp.com/granted.php"
