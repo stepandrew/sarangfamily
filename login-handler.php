@@ -39,19 +39,21 @@ if(empty($errors)) {
      if(mysqli_num_rows($users) > 0){
 	// 	//"https://damp-mountain-91968.herokuapp.com/granted.php"
 	// 	//https://git.heroku.com/shrouded-sierra-40031.git
-	     header('Location: https://git.heroku.com/shrouded-sierra-40031.git/home.php');
+		 //header('Location: https://git.heroku.com/shrouded-sierra-40031.git/home.php');
+		 header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
 	//header("Location:home.php");
         exit;
     }
     else{
-		$errors['status'] = "Invalid Email or Password. Try again / Create an account.";
-		echo $errors['status'];
+		header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
+//		$errors['status'] = "Invalid Email or Password. Try again / Create an account.";
+//		echo $errors['status'];
 
     }
 } else {
 	$_SESSION["errors"] = $errors;
 	$_SESSION['presets'] = array('email' => htmlspecialchars($email),'pw' => htmlspecialchars($pw));
-	header('Location: login.php');
+	header('Location: logfail.php');
 }
 
 ?>
