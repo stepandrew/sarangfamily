@@ -40,8 +40,9 @@ if(empty($_SESSION['error'])) {
 	//if ($email == "annahan@gmail.com" && $password == "1111") {
 	//	$valid = true;
 $users = $dao->getUsers($email,$password);
+print_r ($users);
 echo "here3";
-     if($email>0) {
+     if(      ) {
 		echo "<table>";
 		foreach ($email as $emails){
 			echo "<tr>";
