@@ -47,9 +47,9 @@ if(empty($errors)) {
         exit;
     }
     else{
-		header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
-//		$errors['status'] = "Invalid Email or Password. Try again / Create an account.";
-//		echo $errors['status'];
+	//	header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
+		$errors['status'] = "Invalid Email or Password. Try again / Create an account.";
+		echo $errors['status'];
 
     }
 } else {
