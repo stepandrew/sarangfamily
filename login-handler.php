@@ -9,6 +9,8 @@ $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);;
 //$dao->addUser($username);
 //echo $dao->getConnectionStatus();
 $dao= new Dao();
+
+echo "here1"
 $users = $dao->getUsers($email,$password);
 echo $users;
 
