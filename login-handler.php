@@ -12,8 +12,8 @@ $password = $_POST['password'];
 $dao= new Dao();
 
 
-$users = $dao->getUsers($email,$password);
-echo $users;
+//$users = $dao->getUsers($email,$password);
+//echo $users;
 
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	$emailError = "Must be valid email address.";
@@ -37,8 +37,6 @@ if(empty($errors)) {
 */
 	//if ($email == "annahan@gmail.com" && $password == "1111") {
 	//	$valid = true;
-	  
-	  echo "here";
 
      if($users = $dao->getUsers($email,$password)) {
 		 echo $users;
