@@ -10,9 +10,9 @@ $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);;
 //echo $dao->getConnectionStatus();
 $dao= new Dao();
 
-echo "here1";
-$users = $dao->getUsers($email,$password);
-echo $users;
+
+//$users = $dao->getUsers($email,$password);
+//echo $users;
 
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	$emailError = "Must be valid email address.";
@@ -38,11 +38,12 @@ if(empty($errors)) {
 	//	$valid = true;
 	  
 	  
-     if(mysqli_num_rows($users) > 0){
+     if($users = $dao->getUsers($email,$password);) {
+		 echo $users;
 	// 	//"https://damp-mountain-91968.herokuapp.com/granted.php"
 	// 	//https://git.heroku.com/shrouded-sierra-40031.git
 		 //header('Location: https://git.heroku.com/shrouded-sierra-40031.git/home.php');
-		 header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+		//header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
 	//header("Location:home.php");
         exit;
     }
@@ -54,7 +55,7 @@ if(empty($errors)) {
     }
 } else {
 	$_SESSION["errors"] = $errors;
-	$_SESSION['presets'] = array('email' => htmlspecialchars($email),'pw' => htmlspecialchars($pw));
+	$_SESSION['presets'] = array('email' => htmlspecialchars($email),'password' => htmlspecialchars($password));
 	header('Location: logfail.php');
 }
 
