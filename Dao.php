@@ -74,7 +74,7 @@
 		$getq->bindParam(":email", $email);
 		$getq->bindParam(":password", $password);
 		$getq->execute();
-	
+	return $getq;
 	}
 
 	public function userExists($email){
