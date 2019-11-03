@@ -37,13 +37,13 @@ if(empty($errors)) {
 	//if ($email == "annahan@gmail.com" && $password == "1111") {
 	//	$valid = true;
 	  
-	  
+	  echo "here";
      if($users = $dao->getUsers($email,$password)) {
 		 echo $users;
 	// 	//"https://damp-mountain-91968.herokuapp.com/granted.php"
 	// 	//https://git.heroku.com/shrouded-sierra-40031.git
 		 //header('Location: https://git.heroku.com/shrouded-sierra-40031.git/home.php');
-		//header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+		header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
 	//header("Location:home.php");
         exit;
     }
