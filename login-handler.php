@@ -12,7 +12,7 @@ $_SESSION['error']=array();
 $dao= new Dao();
 
 
-//$users = $dao->getUsers($email,$password);
+$users = $dao->getUsers($email,$password);
 //echo $users;
 
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -41,7 +41,7 @@ if(empty($_SESSION['error'])) {
 	//	$valid = true;
 
      if(!empty($users)   ){
-		$users = $dao->getUsers($email,$password);
+		//$users = $dao->getUsers($email,$password);
 print_r ($users);
 echo "here3";
 
