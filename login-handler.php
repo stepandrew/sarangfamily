@@ -39,11 +39,11 @@ if(empty($_SESSION['error'])) {
 	//	$valid = true;
 $users = $dao->getUsers($email,$password);
 
-     if($users>0) {
+     if($email>0) {
 		echo "<table>";
-		foreach ($users as $userarray){
+		foreach ($email as $emails){
 			echo "<tr>";
-			echo "<td>" . $userarray["userarray"] . "</td>";
+			echo "<td>" . $emails["emails"] . "</td>";
 			echo "</tr>";
 		}
 
