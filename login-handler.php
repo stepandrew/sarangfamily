@@ -6,7 +6,7 @@ require_once('Dao.php');
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-
+$_SESSION['error']=array();
 //$dao->addUser($username);
 
 $dao= new Dao();
@@ -28,7 +28,7 @@ if($error == true){
 <span> OH NO, Your input was incorrect! </span>
 <?php } ?>
 */
-if(empty($errors)) { 
+if(empty($_SESSION['error'])) { 
 /* To do : email match
 	$matches = array();
 	$string = 'my email is conradkennington@gmail.com';

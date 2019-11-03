@@ -1,14 +1,16 @@
 ﻿<?php
 session_start();	
+$_SESSION['error']=array();
+
 function displayError($key) {
-	if(isset($_SESSION['errors'][$key])) { ?>
-		<span id="<?= $key . "Error" ?>" class="error"><?= $_SESSION['errors'][$key] ?></span>
+	if(isset($_SESSION['error'][$key])) { ?>
+		<span id="<?= $key . "Error" ?>" class="error"><?= $_SESSION['error'][$key] ?></span>
 	<?php }
-	unset($_SESSION['errors'][$key]);	
+	unset($_SESSION['error'][$key]);	
 }
 function preset($key) {
-	if(isset($_SESSION['presets'][$key]) && !empty($_SESSION['presets'][$key])) {
-		echo 'value="' . $_SESSION['presets'][$key] . '" ';
+	if(isset($_SESSION['preset'][$key]) && !empty($_SESSION['preset'][$key])) {
+		echo 'value="' . $_SESSION['preset'][$key] . '" ';
 	}
 }
 
