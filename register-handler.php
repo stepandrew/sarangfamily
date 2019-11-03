@@ -22,7 +22,7 @@ require_once 'Dao.php';
 		  $valid = false;
 	}
 	if(!preg_match("/^[a-zA-Z]*$/",$firstname)){
-		$errors['firstname']="Please check your input. Only letter is required"
+		$errors['firstname']="Please check your input. Only letter is required";
 	}
 	if(!filter_var($firstname, FILTER_SANITIZE_STRING)) {
 		$firstnameError = "Must be valid first name.";
@@ -36,7 +36,7 @@ require_once 'Dao.php';
 		  $valid = false;
 	}
 	if(!preg_match("/^[a-zA-Z]*$/",$lastname)){
-		$errors['lastname']="Please check your input. Only letter is required"
+		$errors['lastname']="Please check your input. Only letter is required";
 	}
 	if(!filter_var($lastname, FILTER_SANITIZE_STRING)) {
 		$lastnameError = "Must be valid first name.";
@@ -69,7 +69,8 @@ require_once 'Dao.php';
 		try{
 			$dao = new Dao();	 
 			$dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
-		  //  header('Location:home.php');
+		 //   header('Location:home.php');
+		  
 	  
 			   }catch(Exception $e){
 				  $error['status']="Error occured";
