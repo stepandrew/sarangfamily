@@ -28,7 +28,9 @@ if($error == true){
 <span> OH NO, Your input was incorrect! </span>
 <?php } ?>
 */
+echo "here1";
 if(empty($_SESSION['error'])) { 
+	echo "here2";
 /* To do : email match
 	$matches = array();
 	$string = 'my email is conradkennington@gmail.com';
@@ -38,7 +40,7 @@ if(empty($_SESSION['error'])) {
 	//if ($email == "annahan@gmail.com" && $password == "1111") {
 	//	$valid = true;
 $users = $dao->getUsers($email,$password);
-
+echo "here3";
      if($email>0) {
 		echo "<table>";
 		foreach ($email as $emails){
@@ -56,12 +58,12 @@ $users = $dao->getUsers($email,$password);
     }
     else{
 	//	header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
-		$errors['status'] = "Invalid Email or Password. Try again / Create an account.";
-		echo $errors['status'];
+		$error['status'] = "Invalid Email or Password. Try again / Create an account.";
+		echo $error['status'];
 
     }
 } else {
-	$_SESSION["errors"] = $errors;
+	$_SESSION["error"] = $error;
 	$_SESSION['presets'] = array('email' => htmlspecialchars($email),'password' => htmlspecialchars($password));
 	header('Location: logfail.php');
 }
