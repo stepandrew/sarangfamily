@@ -3,78 +3,81 @@ session_start();
 require_once 'Dao.php';
 
 //register
-	 $firstname = filter_var($_POST["firstname"], FILTER_SANITIZE_STRING);
-	 echo $firstname;
-	 $lastname =filter_var($_POST["lastname"], FILTER_SANITIZE_STRING);
-	 $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+	 $firstname =$_POST["firstname"];
+	 $lastname =$_POST["lastname"];
+	 $email = htmlspecialchars($_POST["email"], ENT_QUOTES);
 	 $password = filter_var($_POST["password"],FILTER_SANITIZE_STRING);
 	 $password_match =filter_var($_POST["password_match"],FILTER_SANITIZE_STRING);
      $birthday = filter_var($_POST["birthday"],FILTER_SANITIZE_STRING);
-	 $valid = true;
+	 $valid = true;	
+	 $error = array();	
 
-
-		 // TODO 
-		 // save new user to the database
-		
-//		 $error = array();
-		 try{
-	  $dao = new Dao();
-	 // $dao ->getConnection();
-	 // $dao ->getConnectionStatus();
-	  $dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
-
-		 }catch(Exception $e){
-			$error['status']="Error occured";
-		 }
-
-
-
-/*
 	 function valid_length($field, $min, $max){
 		 $trimmed = trim ($field);
 		 return (strlen($trimmed) >= $min && strlen($trimmed) <= $max);
 	 }
-
-//echo "here1";
-	 if(strlen($firstName) <=0 || strlen($firstName)>40){ 
-		 $firstNameError = "first name is required. Must be less than 50 characters.";
+	 if(strlen($firstname) <=0 || strlen($firstname)>40){ 
+		 $firstnameError = "first name is required. Must be less than 40 characters.";
+		 echo $firstnameError;
 		  $valid = false;
 	}
-//echo "here2";
-	  if(strlen($lastName) <=0 || strlen($lastName)>50){ 
-		 $lastNameError = "last name is required. Must be less than 50 characters.";
+	if(!preg_match("/^[a-zA-Z]*$/",$firstname)){
+		$errors['firstname']="Please check your input. Only letter is required"
+	}
+	if(!filter_var($firstname, FILTER_SANITIZE_STRING)) {
+		$firstnameError = "Must be valid first name.";
+		echo $firstnameError;
+		$valid = false;
+  }
+	  if(strlen($lastname) <=0 || strlen($lastname)>40){ 
+		  
+		 $lastnameError = "last name is required. Must be less than 40 characters.";
+		 echo $lastnameError;
 		  $valid = false;
 	}
-//echo "here3";
-	  if(strlen($email) <=0 || strlen($email)>50){ 
-		 $emailError = "email is required. Must be less than 50 characters.";
+	if(!preg_match("/^[a-zA-Z]*$/",$lastname)){
+		$errors['lastname']="Please check your input. Only letter is required"
+	}
+	if(!filter_var($lastname, FILTER_SANITIZE_STRING)) {
+		$lastnameError = "Must be valid first name.";
+		echo $lastnameErro;
+		$valid = false;
+  }
+	if(strlen($email) <=0 || strlen($email)>40){ 
+		 $emailError = "email is required. Must be less than 40 characters.";
+		 echo $emailErro;
 		  $valid = false;
 		  
-	}else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	}
+	
+	 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		  $emailError = "Must be valid email address.";
+		  echo $emailErro;
 		  $valid = false;
-	  }
+	}
 	 if(!valid_length($password, 2, 128)){
 		 $passwordError ="Please enter a password.";
+		echo $passwordError;
 		  $valid = false;
 	 }else if($password != $password_match){
-		 $passwordMatchError = "Passwords do not match.";
+		 $error['passwordMatchError'] = "Passwords do not match.";
+		 //echo $passwordMatchError;
+		 $valid = false;
 	 }
 
-*/
-
-	// if($valid == true){
-	 /*
-	 $connection = mysqli_connect($DB_host, $DB_username, $DB_password, $DB_database);
-     $my_query = "";
-     $my_query = "SELECT * FROM users WHERE email = '$email' AND pw = '$pw'";
-     $result = mysqli_query($connection, $my_query);
-
-		*/
+	 if($valid == true){
+		try{
+			$dao = new Dao();	 
+			$dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
+		  //  header('Location:home.php');
+	  
+			   }catch(Exception $e){
+				  $error['status']="Error occured";
+			   }
 		 
 
-		// header('Location:home.php');
+	
 	// }else{
 	//	 header('location: register.php ? error=true');
-	// }
+	 }
 	 

@@ -1,4 +1,11 @@
-﻿
+﻿<?php
+function displayError($key) {
+	if(isset($_SESSION['errors'][$key])) { ?>
+		<span id="<?= $key . "Error" ?>" class="error"><?= $_SESSION['errors'][$key] ?></span>
+	<?php }
+	unset($_SESSION['errors'][$key]);	
+}
+?>
 <html>
  <body>
 	 <div class="header-container">
@@ -13,30 +20,28 @@
    
     <form action="register-handler.php" method ="post">
 		<fieldset>
-		
-		
-        First name:<br>
-        	<input type = "text" id ="firstName" name = "firstname" maxlength="50" required/>
+    <p> <?php displayError('status'); ?> </p>
+		<div>
+      <label for ="firstname">  First name:</label><br>
+        	<input type = "text" id ="firstname" name = "firstname" placeholder='first name' required/>
        		 <br><br>
-        Last name: <br>
-      	  	<input type = "text" id= "lastName" name="lastname" required/>
+      <label for ="lastname">  Last name:</label><br>
+      	  	<input type = "text" id= "lastname" name="lastname" placeholder='last name'required/>
 			<br><br>
 		
-	    email:<br>
-            <input type = "email" id="email" name = "email" required />
+	    <label for ="email">Email:</label><br>
+            <input type = "email" id="email" name = "email" placeholder='email' required />
             <br><br>
 		
-       password: <br>
-            <input type = "password" id = "password" name="password" required />
+      <label for ="password">password:</label> <br>
+            <input type = "password" id = "password" name="password" placeholder='password' required />
             <br><br>
 	
-		 password match: <br>
-            <input type = "password" id= "password_match" name="password_match" required />
+      <label for ="passwordmatch">password match: </label><br>
+            <input type = "password" id= "password_match" name="password_match" placeholder='password match' required />
             <br><br>
-   <!--	<input type="radio" name="gender" value="male" checked> Male<br>
-          <input type="radio" name="gender" value="female"> Female<br>
-          <input type="radio" name="gender" value="other"> Other<br><br> -->
-        Birthday:
+   
+      <label for ="birthday">   Birthday: </label>
         <input type="date" name="birthday">
 
         <br>
@@ -45,13 +50,6 @@
         <button type="reset" >Reset</button>
 		</fieldset>
      </form>
-	<?php 
-	$error = isset( $_GET['error']) ? $_GET['error'] : false;
-	if($error == true){
-		?>
-	<span> OH NO, Your input was incorrect! </span>
-	<?php } ?>
-
 </section>
   <div class="footer-container">
 
