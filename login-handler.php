@@ -38,7 +38,7 @@ if(empty($errors)) {
 	//	$valid = true;
 	  
 	  
-     if($users = $dao->getUsers($email,$password);) {
+     if($users = $dao->getUsers($email,$password)) {
 		 echo $users;
 	// 	//"https://damp-mountain-91968.herokuapp.com/granted.php"
 	// 	//https://git.heroku.com/shrouded-sierra-40031.git
