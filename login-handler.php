@@ -10,7 +10,7 @@ $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);;
 //echo $dao->getConnectionStatus();
 $dao= new Dao();
 
-echo "here1"
+echo "here1";
 $users = $dao->getUsers($email,$password);
 echo $users;
 
