@@ -39,16 +39,11 @@ if(empty($_SESSION['error'])) {
 */
 	//if ($email == "annahan@gmail.com" && $password == "1111") {
 	//	$valid = true;
-$users = $dao->getUsers($email,$password);
+
+     if(!empty($users)   ){
+		$users = $dao->getUsers($email,$password);
 print_r ($users);
 echo "here3";
-     if(      ) {
-		echo "<table>";
-		foreach ($email as $emails){
-			echo "<tr>";
-			echo "<td>" . $emails["emails"] . "</td>";
-			echo "</tr>";
-		}
 
 	// 	//"https://damp-mountain-91968.herokuapp.com/granted.php"
 	// 	//https://git.heroku.com/shrouded-sierra-40031.git
