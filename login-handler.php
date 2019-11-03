@@ -1,9 +1,10 @@
 <?php
 session_start();
 require_once('Dao.php');
+//$email = $_GET['email'];
+
 $email = $_POST['email'];
- 
-$password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);;
+$password = $_POST['password'];
 
 
 //$dao->addUser($username);
