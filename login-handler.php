@@ -1,93 +1,98 @@
 <?php
 session_start();
-require_once('Dao.php');
-//$email = $_GET['email'];
+require_once 'Dao.php';
+require_once 'KLogger.php';
 
-$email = $_POST['email'];
+$logger = new KLogger("log.txt",KLogger::WARN );
+
+$email =  $_POST['email'];
 $password = $_POST['password'];
+$valid = true;
+$error=array();
 
-$_SESSION['error']=array();
-//$dao->addUser($username);
+function valid_length($field, $min, $max) {
+	$trimmed = trim($field);	
+	return (strlen($trimmed) >= $min && strlen($trimmed) <= $max);
+	
+}
 
-$dao= new Dao();
-
-try{
-	$users = $dao->getUsers($email,$password);
-	header('Location:granted.php');
-}catch(Exception $e){
-echo print_r($e,1);
+if(!valid_length($password, 2, 120)){
+	$error['passwordError'] ="Please enter a password greater then 2.";
+  // echo $passwordError;
+	 $valid = false;
 }
 
 
-
-//	$_SESSION['error']="fail to get users";
-//	header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
-//header('Location:logfail.php');
-//}else{
-	//header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
-	
-
-//}
-
-
-//$ userexists =$dao -> userExists($email);
-
-
-/*
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-	$emailError = "Must be valid email address.";
-	echo $emailError;
+	$error['emailError'] = "Must be valid email address.";
+	//echo $emailError;
 	$valid = false;
 }
 
-/*
-$error = isset( $_GET['error']) ? $_GET['error'] : false;
-if($error == true){
-	?>
-<span> OH NO, Your input was incorrect! </span>
-<?php } ?>
+if(!valid_length($email, 2, 100)){
+	$error['passwordError'] ="Please enter email greater then 2 and less than 40 counts.";
+  // echo $passwordError;
+	 $valid = false;
+}
+// email match using regular expressions
+if(!preg_match('/\w+@\w+\.[a-zA-Z]{2,4}/',$email)){
 
-echo "here1";
-if(empty($_SESSION['error'])) { 
-	echo "here2";
-/* To do : email match
-	$matches = array();
-	$string = 'my email is conradkennington@gmail.com';
-	preg_match('/\w+@\w+\.[a-zA-Z]{2,4}/', $string, $matches);
-	echo "<pre>" . print_r($matches,1) . "</pre>";
-*/
-	//if ($email == "annahan@gmail.com" && $password == "1111") {
-	//	$valid = true;
-
-    //  if(empty($_SESSION['error'])){
-	// 	 if(mysql_num_rows($users)>0){
-	// 		header('Location:' . "granted.php"); 
-	// 		 exit;
-	// 	 } else{
-	// //	header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
-    //   $_SESSION['error'] = "Invalid Email or Password. Try again / Create an account.";
-	
-
-    // }
+	$errors['emailmatchfail']="Please check your input.";
+	$valid = false;
+}
 
 
-	//	$users = $dao->getUsers($email,$password);
 
+$logger ->LogDebug("Clearing the session array");
+$_SESSION = array();
 
-	// 	//"https://damp-mountain-91968.herokuapp.com/granted.php"
-	// 	//https://git.heroku.com/shrouded-sierra-40031.git
-		 //header('Location: https://git.heroku.com/shrouded-sierra-40031.git/home.php');
-		//header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
-	//header("Location:granted.php");
-      
+if($valid){
+	$_SESSION['logged_in'] = true;
+	$logger->LogInfo("User login successful [{$email}]");
     
-   
-// } else {
-// 	$_SESSION["error"] = $error;
-// 	$_SESSION['presets'] = array('email' => htmlspecialchars($email),'password' => htmlspecialchars($password));
-// 	header('Location: logfail.php');
-// }
+}else{
+	$logger->LogWarn("User login failed [{$email}]");
+	$_SESSION['message'] = "Invalid username or password";
+}
 
-?>
 
+
+
+if(!empty($error)) { 
+
+	$_SESSION["error"] = $error;	
+	$_SESSION["presets"] = array('email' => htmlspecialchars($email),'password' => htmlspecialchars($password));
+
+ 	//header('Location: logfail.php');
+// 	header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
+	$valid = false;
+ }else{
+	$email =  (isset($_POST['email'])) ? $_POST['email'] : "";
+	$password = (isset($_POST['password'])) ? $_POST['password'] : "";
+
+	 //  		header('Location:' . "granted.php");
+	 //header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+	// exit;
+	 
+ }
+
+
+//echo "here1";
+$dao= new Dao();
+//echo "here2";
+try{
+	$users = $dao->getUsers($email,$password);
+	echo "here3";
+	//header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+//	header('Location:granted.php');
+}catch(Exception $e){
+echo print_r($e,1);
+//	header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
+}
 	
+
+	// "https://damp-mountain-91968.herokuapp.com/granted.php"
+	//https://git.heroku.com/shrouded-sierra-40031.git
+	//header('Location: https://git.heroku.com/shrouded-sierra-40031.git/home.php');
+    //header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+	//header("Location:granted.php");

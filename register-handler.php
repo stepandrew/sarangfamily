@@ -1,13 +1,17 @@
 <?php
 session_start();
 require_once 'Dao.php';
+require_once 'KLogger.php';
+
+$rlogger = new KLogger("log.txt",KLogger::WARN );
+
 
 //register
 	 $firstname =$_POST["firstname"];
 	 $lastname =$_POST["lastname"];
-	 $email = htmlspecialchars($_POST["email"], ENT_QUOTES);
-	 $password = filter_var($_POST["password"],FILTER_SANITIZE_STRING);
-	 $password_match =filter_var($_POST["password_match"],FILTER_SANITIZE_STRING);
+	 $email = $_POST["email"];
+	 $password = $_POST["password"];
+	 $password_match =($_POST["password_match"]);
      $birthday = filter_var($_POST["birthday"],FILTER_SANITIZE_STRING);
 	 $valid = true;	
 	 $error = array();	
@@ -16,6 +20,7 @@ require_once 'Dao.php';
 		 $trimmed = trim ($field);
 		 return (strlen($trimmed) >= $min && strlen($trimmed) <= $max);
 	 }
+ 
 	 if(strlen($firstname) <=0 || strlen($firstname)>40){ 
 		 $firstnameError = "first name is required. Must be less than 40 characters.";
 		 echo $firstnameError;
@@ -65,20 +70,38 @@ require_once 'Dao.php';
 		 $valid = false;
 	 }
 
+/*
+$rlogger ->LogDebug("Clearing the session array");
+//$_SESSION = array();
+
+if($valid){
+	$_SESSION['register'] = true;
+	$rlogger->LogInfo("User register successful [{$email}]");
+}else{
+	$logger->LogWarn("User register failed [{$email}]");
+	$_SESSION['message'] = "Invalid email or password";
+}
+if(!empty($error)){
+
+	$_SESSION["error"] = $error;
+	$_SESSION['presets'] = array('firstname' => htmlspecialchars($firstame), 'email' => htmlspecialchars($email),
+	'password' => htmlspecialchars($password), 'password_match' => htmlspecialchars($password_match));
+}
+
+ */   
+
 	 if($valid == true){
 		try{
 			$dao = new Dao();	 
 			$dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
 		 //   header('Location:home.php');
-		  
+		 header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
 	  
 			   }catch(Exception $e){
 				  $error['status']="Error occured";
-			   }
-		 
-
-	
-	// }else{
-	//	 header('location: register.php ? error=true');
+			   }	
+	 }else{
+		// header('location: register.php ? error=true');
+		header('Location: https://damp-mountain-91968.herokuapp.com/register.php');
 	 }
 	 

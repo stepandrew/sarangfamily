@@ -67,15 +67,18 @@
 		$conn = $this->getConnection();
 		return $conn->getAttribute(constant("PDO::ATTR_CONNECTION_STATUS"));
 	}
+
+	
 	public function getUsers($email,$password){
 		$conn=$this->getConnection();
 		try{
-			$getuser= "select * from user where email = :email and passwore=:password";
+			$getuser= "select email, password from user where email = :email and password=:password";
 			$getq=$conn->prepare($getuser);
 			$getq->bindParam(":email", $email);
 			$getq->bindParam(":password", $password);
 			$getq->execute();
-			return $getq;
+			$result=$getq->fetchAll();
+			return reset($result);
 
 		} catch(Exception $e) {
 			echo print_r($e,1);
