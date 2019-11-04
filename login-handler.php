@@ -13,7 +13,7 @@ $dao= new Dao();
 
 
 $users = $dao->getUsers($email,$password);
-//echo $users;
+echo $users;
 
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	$emailError = "Must be valid email address.";

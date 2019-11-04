@@ -69,10 +69,10 @@
 	}
 	public function getUsers($email, $password){
 		$conn=$this->getConnection();
-		$getuser= "select * from user where email=:email and password=:password";
+	    $getuser=$conn->query("select * from user where email = '$email' and passwore='$password'",PDP::FETCH_ASSOC);
 		$getq=$conn->prepare($getuser);
-		$getq->bindParam(":email", $email);
-		$getq->bindParam(":password", $password);
+	//	$getq->bindParam(":email", $email);
+	//	$getq->bindParam(":password", $password);
 		$getq->execute();
 	return $getq;
 	}
