@@ -75,7 +75,7 @@
 			$getq->bindParam(":email", $email);
 			$getq->bindParam(":password", $password);
 			$getq->execute();
-			return $getuser;
+			return $getq;
 			// $my_query = ""; 
 // $my_query = "SELECT * FROM user WHERE email = '$email' AND pw = '$pw'";
 // $users = mysqli_query($conn, $my_query);

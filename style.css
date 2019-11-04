@@ -1,4 +1,6 @@
-﻿.logo{
+﻿
+
+.logo{
 	height:50px;
 	width:50px;	
 	float: left;
@@ -140,8 +142,39 @@ h1 {
 .signupinForm > li >a {
     color: #7b68ee;
 padding: 0px 10px;
-line-heignt: 25px;
+line-height: 25px;
 text-decoration:none;
 font-size:16px;
 letter-spacing: .1em;
+}
+/*.candleinflo{
+	border-block-color: yellow;
+}
+#candle {
+	
+	
+}
+*/
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+.granted{
+	border: 3px solid greenyellow;
+	
+}
+.logfail{
+	border:3px solid orchid;
+	background-color: plum;
+
 }
