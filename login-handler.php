@@ -12,11 +12,20 @@ $_SESSION['error']=array();
 $dao= new Dao();
 //$conn = $dao->getConnection();
 $users = $dao->getUsers($email,$password);
+if($users==False){
+
+	//$_SESSION['error']="fail to get users";
+//	header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
+header('Location:logfail.php');
+}else{
+	//header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+	header('Location:granted.php');
+}
+
+
 //$ userexists =$dao -> userExists($email);
-header('Location:' . "granted.php"); 
-// $my_query = ""; 
-// $my_query = "SELECT * FROM user WHERE email = '$email' AND pw = '$pw'";
-// $users = mysqli_query($conn, $my_query);
+
+
 /*
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	$emailError = "Must be valid email address.";

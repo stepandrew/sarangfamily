@@ -13,9 +13,7 @@
           	<td> <a href = "login.php">Go To login page</a></td>
     </div>
 
- <?php
-    require_once "navbar.php";
-    ?>
+
 </body>
 </html>
 

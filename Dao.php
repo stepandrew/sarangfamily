@@ -67,17 +67,19 @@
 		$conn = $this->getConnection();
 		return $conn->getAttribute(constant("PDO::ATTR_CONNECTION_STATUS"));
 	}
-	public function getUsers(){
+	public function getUsers($email,$password){
 		$conn=$this->getConnection();
 		try{
-			$getuser= $conn->query("select id from user where email = :email and passwore=:password");
+			$getuser= $conn->query("select * from user where email = :email and passwore=:password");
 
 			$getq=$conn->prepare($getuser);
 			$getq->bindParam(":email", $email);
 			$getq->bindParam(":password", $password);
 			$getq->execute();
 			return $getuser;
-			
+			// $my_query = ""; 
+// $my_query = "SELECT * FROM user WHERE email = '$email' AND pw = '$pw'";
+// $users = mysqli_query($conn, $my_query);
 		} catch(Exception $e) {
 			echo print_r($e,1);
 			exit;
