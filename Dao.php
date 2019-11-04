@@ -67,28 +67,39 @@
 		$conn = $this->getConnection();
 		return $conn->getAttribute(constant("PDO::ATTR_CONNECTION_STATUS"));
 	}
-	public function getUsers($email, $password){
+	public function getUsers(){
 		$conn=$this->getConnection();
-	    $getuser=$conn->query("select * from user where email = '$email' and passwore='$password'",PDP::FETCH_ASSOC);
-		$getq=$conn->prepare($getuser);
-	//	$getq->bindParam(":email", $email);
-	//	$getq->bindParam(":password", $password);
-		$getq->execute();
-	return $getq;
-	}
+		try{
+			$getuser= $conn->query("select id from user where email = :email and passwore=:password");
 
-	public function userExists($email){
-		$conn=$this->getConnection();
-		$stmt=$conn->prepare("SELECT * from user where email = :email");
-		$stmt ->bindParam(':email', $email);	
-		$stmt ->execute();
-		if($stmt->fetchAll()){
-			return true;
+			$getq=$conn->prepare($getuser);
+			$getq->bindParam(":email", $email);
+			$getq->bindParam(":password", $password);
+			$getq->execute();
+			return $getuser;
 			
-		}else{
-			return false;
-		}
-	}
+		} catch(Exception $e) {
+			echo print_r($e,1);
+			exit;
+		  }
+		}   
+		
+		
+
+
+	// public function userExists($email){
+	// 	$conn=$this->getConnection();
+	// 	$stmt=$conn->prepare("SELECT * from user where email = :email");
+	// 	$stmt ->bindParam(':email', $email);	
+	// 	$stmt ->execute();
+	// 	if($stmt->fetchAll()){
+	// 		return true;
+			
+	// 	}else{
+	// 		return false;
+	// 	}
+	// }
+	/*
 	 public function getComments() {
 		$conn = $this->getConnection();
 		try {
@@ -111,7 +122,7 @@
 		$q = $conn->prepare($deleteQuery);
 		$q->bindParam(":id", $id);
 		$q->execute();
-  }
-}
-?>
+  } */
+} 
+
 	
