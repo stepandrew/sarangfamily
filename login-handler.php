@@ -10,17 +10,24 @@ $_SESSION['error']=array();
 //$dao->addUser($username);
 
 $dao= new Dao();
-//$conn = $dao->getConnection();
-$users = $dao->getUsers($email,$password);
-if($users==False){
 
-	//$_SESSION['error']="fail to get users";
-//	header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
-header('Location:logfail.php');
-}else{
-	//header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+try{
+	$users = $dao->getUsers($email,$password);
 	header('Location:granted.php');
+}catch(Exception $e){
+echo print_r($e,1);
 }
+
+
+
+//	$_SESSION['error']="fail to get users";
+//	header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
+//header('Location:logfail.php');
+//}else{
+	//header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+	
+
+//}
 
 
 //$ userexists =$dao -> userExists($email);
