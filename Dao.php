@@ -71,7 +71,6 @@
 		$conn=$this->getConnection();
 		try{
 			$getuser= $conn->query("select * from user where email = :email and passwore=:password");
-
 			$getq=$conn->prepare($getuser);
 			$getq->bindParam(":email", $email);
 			$getq->bindParam(":password", $password);
