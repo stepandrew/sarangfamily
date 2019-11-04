@@ -1,9 +1,13 @@
 ﻿<?php
+$_SESSION['error']=array();
+/**
+ * Prints error for given key (if one exists).
+ */
 function displayError($key) {
-	if(isset($_SESSION['errors'][$key])) { ?>
-		<span id="<?= $key . "Error" ?>" class="error"><?= $_SESSION['errors'][$key] ?></span>
+	if(isset($_SESSION['error'][$key])) { ?>
+		<span id="<?= $key . "Error" ?>" class="error"><?= $_SESSION['error'][$key] ?></span>
 	<?php }
-	unset($_SESSION['errors'][$key]);	
+	unset($_SESSION['error'][$key]);	
 }
 ?>
 <html>

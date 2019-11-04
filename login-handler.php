@@ -81,9 +81,14 @@ if(!empty($error)) {
 $dao= new Dao();
 //echo "here2";
 try{
-	$users = $dao->getUsers($email,$password);
-	echo "here3";
-	//header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+	$user = $dao->getUsers($email,$password);
+	
+	if($user){
+		echo "found user";
+	}else{
+		echo "not fount"
+	}
+//	header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
 //	header('Location:granted.php');
 }catch(Exception $e){
 echo print_r($e,1);
