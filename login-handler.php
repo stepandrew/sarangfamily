@@ -58,9 +58,7 @@ if($valid){
 
 
 
-if(empty($error)) { 
-
-	
+if(empty($error)) { 	
    // $email =  (isset($_POST['email'])) ? $_POST['email'] : "";
 	//$password = (isset($_POST['password'])) ? $_POST['password'] : "";
  		header('Location: home.php');
@@ -88,6 +86,7 @@ try{
 		header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
 		//	header('Location:granted.php');
 	}else{
+		$_SESSION["error"]="user information was wrong.";
 		//echo "not fount";
 		//header('Location:login.php');
 		header ('Location: https://damp-mountain-91968.herokuapp.com/login.php');
