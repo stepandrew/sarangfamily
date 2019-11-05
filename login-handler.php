@@ -89,7 +89,8 @@ try{
 		$_SESSION["error"]="user information was wrong.";
 		//echo "not fount";
 		//header('Location:login.php');
-		header ('Location: https://damp-mountain-91968.herokuapp.com/login.php');
+		header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
+		//header ('Location: https://damp-mountain-91968.herokuapp.com/login.php');
 	}
 
 
