@@ -16,35 +16,35 @@ function valid_length($field, $min, $max) {
 	
 }
 
-if(!valid_length($password, 2, 120)){
-	$error['passwordError'] ="Please enter a password greater then 2.";
-  // echo $passwordError;
+if(!valid_length($password, 3, 120)){
+	$error['password'] ="Please enter a password greater then 2.";
+  // echo $error;
 	 $valid = false;
 }
 
 
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-	$error['emailError'] = "Must be valid email address.";
-	//echo $emailError;
+	$error['email'] = "Must be valid email address.";
+	//echo $error;
 	$valid = false;
 }
 
 if(!valid_length($email, 2, 100)){
-	$error['passwordError'] ="Please enter email greater then 2 and less than 40 counts.";
-  // echo $passwordError;
+	$error['password'] ="Please enter email greater then 2 and less than 40 counts.";
+  // echo $error;
 	 $valid = false;
 }
 // email match using regular expressions
 if(!preg_match('/\w+@\w+\.[a-zA-Z]{2,4}/',$email)){
 
-	$errors['emailmatchfail']="Please check your input.";
+	$error['email']="Please check your input.";
 	$valid = false;
 }
 
 
 
 $logger ->LogDebug("Clearing the session array");
-$_SESSION = array();
+//$_SESSION = array();
 
 if($valid){
 	$_SESSION['logged_in'] = true;
@@ -52,28 +52,28 @@ if($valid){
     
 }else{
 	$logger->LogWarn("User login failed [{$email}]");
-	$_SESSION['message'] = "Invalid username or password";
+	$_SESSION['invalid'] = "Invalid username or password";
 }
 
 
 
 
-if(!empty($error)) { 
+if(empty($error)) { 
 
-	$_SESSION["error"] = $error;	
-	$_SESSION["presets"] = array('email' => htmlspecialchars($email),'password' => htmlspecialchars($password));
-
- 	//header('Location: logfail.php');
-// 	header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
-	$valid = false;
- }else{
-	$email =  (isset($_POST['email'])) ? $_POST['email'] : "";
-	$password = (isset($_POST['password'])) ? $_POST['password'] : "";
-
-	 //  		header('Location:' . "granted.php");
+	
+   // $email =  (isset($_POST['email'])) ? $_POST['email'] : "";
+	//$password = (isset($_POST['password'])) ? $_POST['password'] : "";
+ 		header('Location: home.php');
 	 //header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
 	// exit;
+ 
+ }else{
+	$_SESSION["error"] = $error;	
+	$_SESSION["presets"] = array('email' => htmlspecialchars($email),'password' => htmlspecialchars($password));
 	 
+	 	//header('Location: login.php');
+// 	header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
+	$valid = false;
  }
 
 
@@ -89,8 +89,8 @@ try{
 		//	header('Location:granted.php');
 	}else{
 		//echo "not fount";
-
-		header ('Location: https://damp-mountain-91968.herokuapp.com/logfail.php');
+		//header('Location:login.php');
+		header ('Location: https://damp-mountain-91968.herokuapp.com/login.php');
 	}
 
 
