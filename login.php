@@ -1,35 +1,26 @@
 ﻿<?php
 session_start();	
+//echo "<pre>" .print_r($_SESSION,1). "</pre>";
+//echo($_SESSION['error']);
+$presets = array();
+  if (isset($_SESSION['presets'])) {
+    $presets = array_shift($_SESSION['presets']);
+  }
 
-/**
- * Prints error for given key (if one exists).
- */
- /*function displayError($key) {
- 	if(isset($_SESSION['error'][$key])) { ?>
- 		<span id ="<?php $key ."error" ?>" > <?php $_SESSION['error'][$key] ?></span>
- 	<?php }
- 	//unset($_SESSION['error'][$key]);	
- } */
- /**
- * Prints preset for given SESSION key (if one exists).
- */
-// function preset($key) {
-// 	if(isset($_SESSION['preset'][$key]) && !empty($_SESSION['preset'][$key])) {
-// 		echo 'value="' . $_SESSION['preset'][$key] . '" ';
-// 	}
-// }
-// if (isset($_SESSION['message'])) {
-// 	echo "<div class='message bad'>{$_SESSION['message']}</div>";
-//  }
+  //<input type = "email" id="email" name = "email"  placeholder="email" value="<?php echo isset($presets['email']) ? $presets['email'] : ''; ?
 ?>
 
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
+	<link rel="stylesheet" type="text/css" href="form.css">
+</head>
   <body>
 <div class="sessionerr">
- 
+<?php if (isset($_SESSION['error']['message'])) { ?>
+	<span  class="message"><?php echo $_SESSION['error']['message'] ?></span>
+<?php } ?>
+	
  </div>
 
  
@@ -41,23 +32,25 @@ session_start();
 		
 			 <label for ="email">Email</label><br>
 	    
-				<input type = "email" id="email" name = "email"  placeholder="email" value="<?php $_SESSION['presets']['email'] ?>" required/>
-				
-				<?php if(isset($_SESSION['error'])) {
- 					print('<span id =\"error\"</span>');
-				  } 
-				?>
+				<input type = "email" id="email" name = "email"  placeholder="email" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>" required/>
+					<?php if (isset($_SESSION['error']['email'])) { ?>
+			<span  class="message"><?php echo $_SESSION['error']['email'] ?></span>
+			<?php } ?>	
+		
+	
 		</div>
 				<br>
 		<div>
 				<label for="password"> Password</label><br>
-				<input type = "password" name="password" id="password" placeholder="password" required />
-			<!--	<p><?php //displayError('password'); ?></p> -->
+				<input type = "password" name="password" id="password" placeholder="password" value="<?php echo isset($_SESSION['password']) ? $_SESSION['password'] : ''; ?>" required />
+					<?php if (isset($_SESSION['error']['password'])) { ?>
+					<span  class="message"><?php echo $_SESSION['error']['password'] ?></span>
+					<?php } ?>	
 		</div>
 				<br>
 		<div>
 				<input type="submit" value ="submit" id="login" value="Login" />
-			<!--	<?php //displayError('exception'); ?> -->
+		
 		</div>
 			 </form>
 
