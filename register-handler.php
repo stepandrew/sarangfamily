@@ -70,7 +70,7 @@ $rlogger = new KLogger("log.txt",KLogger::WARN );
 		 $valid = false;
 	 }
 
-/*
+
 $rlogger ->LogDebug("Clearing the session array");
 //$_SESSION = array();
 
@@ -88,20 +88,20 @@ if(!empty($error)){
 	'password' => htmlspecialchars($password), 'password_match' => htmlspecialchars($password_match));
 }
 
- */   
+ 
 
 	 if($valid == true){
 		try{
 			$dao = new Dao();	 
 			$dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
-		 //   header('Location:home.php');
-		 header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+		   header('Location:granted.php');
+		// header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
 	  
 			   }catch(Exception $e){
 				  $error['status']="Error occured";
 			   }	
 	 }else{
-		// header('location: register.php ? error=true');
-		header('Location: https://damp-mountain-91968.herokuapp.com/register.php');
+		 header('location: register.php ? error=true');
+		//header('Location: https://damp-mountain-91968.herokuapp.com/register.php');
 	 }
 	 
