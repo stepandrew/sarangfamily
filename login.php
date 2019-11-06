@@ -1,6 +1,6 @@
 ﻿<?php
 session_start();	
-//echo "<pre>" .print_r($_SESSION,1). "</pre>";
+echo "<pre>" .print_r($_SESSION,1). "</pre>";
 //echo($_SESSION['error']);
 $presets = array();
   if (isset($_SESSION['presets'])) {
@@ -62,7 +62,7 @@ $presets = array();
 			 if($error == true){ 
 				 
 			?>
-			 <span> Oh! no, your input was incorrect!</span>
+			 <span id="errorwarn"> Oh! no, your input was incorrect!</span>
 			 <?php } ?>
 
 			

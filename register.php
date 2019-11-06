@@ -3,12 +3,15 @@ $_SESSION['error']=array();
 /**
  * Prints error for given key (if one exists).
  */
-function displayError($key) {
+
+//function is not working yet
+/*function displayError($key) {
 	if(isset($_SESSION['error'][$key])) { ?>
 		<span id="<?= $key . "Error" ?>" class="error"><?= $_SESSION['error'][$key] ?></span>
 	<?php }
 	unset($_SESSION['error'][$key]);	
 }
+*/
 ?>
 <html>
  <body>
@@ -24,7 +27,7 @@ function displayError($key) {
    
     <form action="register-handler.php" method ="post">
 		<fieldset>
-    <p> <?php displayError('status'); ?> </p>
+  
 		<div>
       <label for ="firstname">  First name:</label><br>
         	<input type = "text" id ="firstname" name = "firstname" placeholder='first name' required/>

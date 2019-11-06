@@ -45,7 +45,7 @@ if($valid){
     
 }else{
 	$logger->LogWarn("User login failed [{$email}]");
-	$_SESSION['invalid'] = "Invalid username or password";
+	$_SESSION['invalid'] = "Invalid email or password";
 }
 // if(empty($error)) { 	
 //    // $email =  (isset($_POST['email'])) ? $_POST['email'] : "";
