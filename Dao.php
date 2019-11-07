@@ -10,8 +10,16 @@
 //shrouded-sierra-40031 
 //private $db = 'heroku_58c5f9d8f127161';
 		private $user = 'b1b2fd935ca956';
-  		private $pass = '340e5b69';
+		  private $pass = '340e5b69';
+		   
 
+
+		// private $host = 'us-cdbr-iron-east-05.cleardb.net';
+		// private $db = 'heroku_6801655a5d8ebae';
+		// private $user = 'bb4bda93968694';
+		// private $pass = 'bad2b326';
+		
+		  //mysql://bb4bda93968694:bad2b326@us-cdbr-iron-east-05.cleardb.net/heroku_6801655a5d8ebae?reconnect=true
 /**
  * Creates and returns a PDO connection using the database connection
  * url specified in the CLEARDB_DATABASE_URL environment variable.
@@ -26,15 +34,23 @@
 		}
 		return $conn; 
 	}
-/*		public function addUser($input){
+	/*	public function addUser($input){
 			$conn = $this->getConnection();
 			$saveInput = "insert into user (email) values (:input)";
 			$q=$conn->prepare($saveInput);
 			$q->bindParam(":input", $input);
 			$q->execute();
-			
+	*/
 		}
-*/
+        public function addUser($email, $password){
+			$conn = $this->getConnection();
+			$saveInput = "insert into user (email, password) value (:email, :password )";
+			$q=$conn->prepare($saveInput);
+			$q->bindParam(":email", $email);
+			$q->bindParam(":password", $password);
+			$q->execute();
+
+		}
 		// public function getRegiser(){
 		// 	$conn = $this->getConnection();
 		// 	return $conn ->query("select id from register")
@@ -86,9 +102,18 @@
 		  }
 		}   
 		
-		
+	
 
-
+		public function getNameAndStatus($email){
+			$conn = $this->getConnection();
+			$query = "SELECT firstname, lastName FROM user WHERE email = :user_email";
+			$query = $conn->prepare($query);
+			$query->bindParam(":user_email", $email);
+			$query->execute();
+			$result = $query->fetchAll();
+			return $result;
+		  }
+		  
 	// public function userExists($email){
 	// 	$conn=$this->getConnection();
 	// 	$stmt=$conn->prepare("SELECT * from user where email = :email");

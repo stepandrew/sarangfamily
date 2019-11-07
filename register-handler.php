@@ -72,11 +72,12 @@ $rlogger = new KLogger("log.txt",KLogger::WARN );
 
 
 $rlogger ->LogDebug("Clearing the session array");
-//$_SESSION = array();
+
 
 if($valid){
 	$_SESSION['register'] = true;
 	$rlogger->LogInfo("User register successful [{$email}]");
+	$dao->addUser($email, $password);
 }else{
 	$logger->LogWarn("User register failed [{$email}]");
 	$_SESSION['message'] = "Invalid email or password";
@@ -94,14 +95,14 @@ if(!empty($error)){
 		try{
 			$dao = new Dao();	 
 			$dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
-		   header('Location:granted.php');
-		// header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+		 //  header('Location:granted.php');
+		 header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
 	  
 			   }catch(Exception $e){
 				  $error['status']="Error occured";
 			   }	
 	 }else{
-		 header('location: register.php ? error=true');
-		//header('Location: https://damp-mountain-91968.herokuapp.com/register.php');
+		// header('location: register.php ? error=true');
+		header('Location: https://damp-mountain-91968.herokuapp.com/register.php');
 	 }
 	 
