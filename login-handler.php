@@ -23,18 +23,18 @@ if(!valid_length($password, 3, 120)){
 	 $valid = false;
 }
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-	$error['email'] = "Must be valid email address.";
+	$error['email'][] = "Must be valid email address.";
 	//echo $error;
 	$valid = false;
 }
 if(!valid_length($email, 2, 100)){
-	$error['email'] ="Please enter email greater then 2 and less than 40 counts.";
+	$error['email'][] ="Please enter email greater then 2 and less than 40 counts.";
   // echo $error;
 	 $valid = false;
 }
 // email match using regular expressions
 if(!preg_match('/\w+@\w+\.[a-zA-Z]{2,4}/',$email)){
-	$error['email']="Please check your input.";
+	$error['email'][]="Please check your input.";
 	$valid = false;
 }
 $logger ->LogDebug("Clearing the session array");
