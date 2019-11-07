@@ -74,14 +74,18 @@ $rlogger = new KLogger("log.txt",KLogger::WARN );
 $rlogger ->LogDebug("Clearing the session array");
 
 
-if($valid){
-	$_SESSION['register'] = true;
-	$rlogger->LogInfo("User register successful [{$email}]");
-	$dao->addUser($email, $password);
-}else{
-	$logger->LogWarn("User register failed [{$email}]");
-	$_SESSION['message'] = "Invalid email or password";
-}
+// if($valid){
+// 	$_SESSION['register'] = true;
+// 	$rlogger->LogInfo("User register successful [{$email}]");
+
+	
+// 	$dao->addUser($email, $password);
+
+// 	echo "here3";
+// }else{
+// 	$logger->LogWarn("User register failed [{$email}]");
+// 	$_SESSION['message'] = "Invalid email or password";
+// }
 if(!empty($error)){
 
 	$_SESSION["error"] = $error;
@@ -89,20 +93,29 @@ if(!empty($error)){
 	'password' => htmlspecialchars($password), 'password_match' => htmlspecialchars($password_match));
 }
 
- 
-
 	 if($valid == true){
 		try{
-			$dao = new Dao();	 
+			$dao = new Dao();	
+			$_SESSION['register'] = true;
+			$rlogger->LogInfo("User register successful [{$email}]");
+
+          //  echo "here1";
+			$dao->addUser($email, $password);
+
+		//	echo "here2";
 			$dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
+			
 		 //  header('Location:granted.php');
-		 header('Location: https://damp-mountain-91968.herokuapp.com/granted.php');
+		 header('Location: https://sleepy-fortress-90334.herokuapp.com/granted.php');
 	  
 			   }catch(Exception $e){
 				  $error['status']="Error occured";
 			   }	
 	 }else{
-		// header('location: register.php ? error=true');
-		header('Location: https://damp-mountain-91968.herokuapp.com/register.php');
+		$logger->LogWarn("User register failed [{$email}]");
+		$_SESSION['message'] = "Invalid email or password";
+		 //header('location: register.php ? error=true');
+		 https://sleepy-fortress-90334.herokuapp.com/register.php
+		header('Location: https://sleepy-fortress-90334.herokuapp.com/register.php');
 	 }
 	 

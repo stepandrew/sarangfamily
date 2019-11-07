@@ -150,10 +150,7 @@ letter-spacing: .1em;
 /*.candleinflo{
 	border-block-color: yellow;
 }
-#candle {
-	
-	
-}
+
 */
 div.gallery {
   margin: 5px;
@@ -177,4 +174,27 @@ div.gallery img {
 	border:3px solid orchid;
 	background-color: plum;
 
+}
+.logout{
+	border:3px solid orchid;
+	background-color: plum;
+}
+.email{
+	background-color:#90ee90;
+}
+
+.candlewarning{
+	color: sienna;
+}
+#candle{
+	color: rgb(70, 11, 11);
+}
+#info{
+	color: brown;
+}
+#infocandle{
+	color: cornflowerblue;
+}
+information{
+	
 }
