@@ -1,4 +1,12 @@
-
+<?php
+session_start();
+?>
+<?php
+if(!isset($_SESSION['access_granted']) ||$_SESSION['access_granted'] !== true ){
+  header("location: login.php");
+  exit();
+}
+?>
   <div class="header-container">
 
           	<?php
@@ -13,10 +21,8 @@
 
    </html>
 
-
-
   <div class="footer-container">
-	<?php
- 	   require_once('footer.php');
-	?>
+          <?php
+            require_once('footer.php');
+          ?>
     </div>

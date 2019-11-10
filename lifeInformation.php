@@ -1,3 +1,12 @@
+<?php
+session_start();
+?>
+<?php
+if(!isset($_SESSION['access_granted']) ||$_SESSION['access_granted'] !== true ){
+  header("location: login.php");
+  exit();
+}
+?>
 <html>
   <div class="header-container">
 

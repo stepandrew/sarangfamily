@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <div class="header-container">
 
           	<?php
@@ -5,8 +8,9 @@
           	?>
    </div>
 <html>
-	<h2>In this site, I will share recipe and food information with my family </h2>
-    <h2>This page is under construction<h2>
+	<a href="https://10000recipe.com/bbs/1266" id= "recepi1"  >Back Jong-Won's recepies </h2>
+	<h3 id= "recepie2">This page is my favorite recepies link </h3>
+  
 </html>
 	<?php
  	   require_once('footer.php');

@@ -3,6 +3,7 @@ session_start();
 require_once 'Dao.php';
 require_once 'KLogger.php';
 
+$dao = new Dao();	
 $rlogger = new KLogger("log.txt",KLogger::WARN );
 
 
@@ -14,7 +15,9 @@ $rlogger = new KLogger("log.txt",KLogger::WARN );
 	 $password_match =($_POST["password_match"]);
      $birthday = filter_var($_POST["birthday"],FILTER_SANITIZE_STRING);
 	 $valid = true;	
-	 $error = array();	
+
+	 $errors = array();	
+	 $_SESSION['setup']=array($_POST);
 
 	 function valid_length($field, $min, $max){
 		 $trimmed = trim ($field);
@@ -22,100 +25,105 @@ $rlogger = new KLogger("log.txt",KLogger::WARN );
 	 }
  
 	 if(strlen($firstname) <=0 || strlen($firstname)>40){ 
-		 $firstnameError = "first name is required. Must be less than 40 characters.";
+		 $errors['firstnameError'] = "first name is required. Must be less than 40 characters.";
 		 echo $firstnameError;
 		  $valid = false;
 	}
 	if(!preg_match("/^[a-zA-Z]*$/",$firstname)){
-		$errors['firstname']="Please check your input. Only letter is required";
+		$errors['firstname']="Please check your input. Only letter is required.";
+		$valid = false;
 	}
 	if(!filter_var($firstname, FILTER_SANITIZE_STRING)) {
-		$firstnameError = "Must be valid first name.";
-		echo $firstnameError;
+		$errors['firstnamenotvalid'] = "Must be valid first name.";
 		$valid = false;
   }
 	  if(strlen($lastname) <=0 || strlen($lastname)>40){ 
 		  
-		 $lastnameError = "last name is required. Must be less than 40 characters.";
-		 echo $lastnameError;
+		 $errors['lastnameError'] = "last name is required. Must be less than 40 characters.";
 		  $valid = false;
 	}
 	if(!preg_match("/^[a-zA-Z]*$/",$lastname)){
-		$errors['lastname']="Please check your input. Only letter is required";
+		$errors['lastname']="Please check your input. Only letter is required.";
+		$valid = false;
 	}
 	if(!filter_var($lastname, FILTER_SANITIZE_STRING)) {
-		$lastnameError = "Must be valid first name.";
+		$errors['lastnameError'] = "Must be valid first name.";
 		echo $lastnameErro;
 		$valid = false;
   }
 	if(strlen($email) <=0 || strlen($email)>40){ 
-		 $emailError = "email is required. Must be less than 40 characters.";
-		 echo $emailErro;
-		  $valid = false;
+		 $errors['emaillengthError'] = "email is required. Must be less than 40 characters.";
+    	  $valid = false;
 		  
 	}
 	
 	 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		  $emailError = "Must be valid email address.";
-		  echo $emailErro;
+		  $errors['emailError'] = "Must be valid email address.";
 		  $valid = false;
 	}
 	 if(!valid_length($password, 2, 128)){
-		 $passwordError ="Please enter a password.";
-		echo $passwordError;
+		 $errors['passwordError'] ="Please enter a password.";
 		  $valid = false;
+
 	 }else if($password != $password_match){
-		 $error['passwordMatchError'] = "Passwords do not match.";
+		 $errors['passwordMatchError'] = "Passwords do not match.";
 		 //echo $passwordMatchError;
 		 $valid = false;
 	 }
+     
+	 if($dao->checkEmailExists($email)){
+		$errors['emailexist']="Email already exists.";
+		}
 
 
 $rlogger ->LogDebug("Clearing the session array");
 
-
-// if($valid){
-// 	$_SESSION['register'] = true;
-// 	$rlogger->LogInfo("User register successful [{$email}]");
-
-	
-// 	$dao->addUser($email, $password);
-
-// 	echo "here3";
-// }else{
-// 	$logger->LogWarn("User register failed [{$email}]");
-// 	$_SESSION['message'] = "Invalid email or password";
-// }
-if(!empty($error)){
-
-	$_SESSION["error"] = $error;
-	$_SESSION['presets'] = array('firstname' => htmlspecialchars($firstame), 'email' => htmlspecialchars($email),
-	'password' => htmlspecialchars($password), 'password_match' => htmlspecialchars($password_match));
-}
+if(empty($errors)){
 
 	 if($valid == true){
-		try{
-			$dao = new Dao();	
+	
+		
 			$_SESSION['register'] = true;
 			$rlogger->LogInfo("User register successful [{$email}]");
 
-          //  echo "here1";
-			$dao->addUser($email, $password);
 
-		//	echo "here2";
+    	
+			$dao->addUser($email, $password);
 			$dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
-			
-		 //  header('Location:granted.php');
-		 header('Location: https://sleepy-fortress-90334.herokuapp.com/granted.php');
-	  
-			   }catch(Exception $e){
-				  $error['status']="Error occured";
-			   }	
+		
+			header('Location: welcome.php');
+		
+	
 	 }else{
-		$logger->LogWarn("User register failed [{$email}]");
-		$_SESSION['message'] = "Invalid email or password";
-		 //header('location: register.php ? error=true');
-		 https://sleepy-fortress-90334.herokuapp.com/register.php
-		header('Location: https://sleepy-fortress-90334.herokuapp.com/register.php');
+
+		$rlogger->LogWarn("User register failed [{$email}]");
+
+		
+     
+         $messages =  " User register failed. ";
+		$errors['messages']=$messages;
+		$_SESSION['messages'] = $errors['messages'];
+
+		$_SESSION['emailexist'] =$errors['emailexist'];
+
+        $_SESSION['firstnameError'] =  $errors['firstnameError'];
+		$_SESSION['firstname']=$errors['firstname'];
+		$_SESSION['firstnamenotvalid']=$errors['firstnamenotvalid'];
+		$_SESSION['lastnameError']=$errors['lastnameError'];
+		$_SESSION['emaillengthError']=$errors['emaillengthError'];
+		$_SESSION['emailError']=$errors['emailError'];
+		$_SESSION['passwordError']=$errors['passwordError'];
+		$_SESSION['passwordMatchError']=$errors['passwordMatchError'];
+
+		$_SESSION['errors'] = $errors;
+		header('Location: register.php');
 	 }
-	 
+}else {
+
+		$_SESSION["errors"] = $errors;
+		$_SESSION['presets'] = array('firstname' => htmlspecialchars($firstname), 'email' => htmlspecialchars($email),
+		'password' => htmlspecialchars($password), 'password_match' => htmlspecialchars($password_match));
+		header('Location: register.php');
+	}
+
+	?>

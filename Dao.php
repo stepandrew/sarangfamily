@@ -1,22 +1,24 @@
 
 	<?php
+
+	
 	
 	class Dao{
-		private $host = 'us-cdbr-iron-east-05.cleardb.net';
-		
-		//damp-mountain-91968		
-				private $db = 'heroku_f4584639f739b09';
-		//shrouded-sierra-40031 
-		//private $db = 'heroku_58c5f9d8f127161';
-				private $user = 'b1b2fd935ca956';
-				  private $pass = '340e5b69';
-
-
-				  
 		// private $host = 'us-cdbr-iron-east-05.cleardb.net';
-		// private $db = 'heroku_6801655a5d8ebae';
-		// private $user = 'bb4bda93968694';
-		// private $pass = 'bad2b326';
+		
+		// //damp-mountain-91968		
+		// 		private $db = 'heroku_f4584639f739b09';
+		// //shrouded-sierra-40031 
+		// //private $db = 'heroku_58c5f9d8f127161';
+		// 		private $user = 'b1b2fd935ca956';
+		// 		  private $pass = '340e5b69';
+
+
+
+		private $host = 'us-cdbr-iron-east-05.cleardb.net';
+		private $db = 'heroku_6801655a5d8ebae';
+		private $user = 'bb4bda93968694';
+		private $pass = 'bad2b326';
 /**
  * Creates and returns a PDO connection using the database connection
  * url specified in the CLEARDB_DATABASE_URL environment variable.
@@ -92,30 +94,27 @@
 		  }
 		}   
 		
-	
-
-		public function getNameAndStatus($email){
-			$conn = $this->getConnection();
-			$query = "SELECT firstname, lastName FROM user WHERE email = :user_email";
-			$query = $conn->prepare($query);
-			$query->bindParam(":user_email", $email);
-			$query->execute();
-			$result = $query->fetchAll();
-			return $result;
-		  }
 		  
-	// public function userExists($email){
-	// 	$conn=$this->getConnection();
-	// 	$stmt=$conn->prepare("SELECT * from user where email = :email");
-	// 	$stmt ->bindParam(':email', $email);	
-	// 	$stmt ->execute();
-	// 	if($stmt->fetchAll()){
-	// 		return true;
-			
-	// 	}else{
-	// 		return false;
-	// 	}
-	// }
+	public function userExists($email){
+		$conn=$this->getConnection();
+		$stmt=$conn->prepare("SELECT firstname from register where email = :email");
+		$stmt ->bindParam(':email', $email);	
+		$stmt ->execute();
+		$returnRow = $stmt->fetch(PDO::FETCH_ASSOC);
+	//	$id = $returnRow['firstname'];
+	//	return $id;
+		return $returnRow;
+		
+	}
+	
+	public function checkEmailExists($email){
+		$conn=$this->getConnection();
+		$stmt=$conn->prepare("SELECT email from register where email = :email");
+		$stmt ->bindParam(':email', $email);	
+		$stmt ->execute();
+		$returnRow = $stmt->fetch(PDO::FETCH_ASSOC);
+		return $returnRow;
+	}
 	/*
 	 public function getComments() {
 		$conn = $this->getConnection();

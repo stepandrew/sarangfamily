@@ -1,15 +1,22 @@
 ﻿ <?php
  session_start();
  session_destroy();
- 
+//  redirect ("home.php", "Logout successful. ");
+//  require_once 'form_helper.php';
  ?>
  <html>
 <head>
 	<header><title>logout</title></header>
 	<link href="style" type="text/css" rel="stylesheet">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 <body>
- 
+<div class="header-container">
+
+<?php
+	require_once('header.php');
+?>
+</div>
 
        <div class = "logout">
            <h2>Please visit  Saranfamily homepage again<h2>

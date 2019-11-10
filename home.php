@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+
+// if(!isset($_SESSION)){
+//          session_start();
+// }
+// if(isset($_SESSION["flash"])){
+// ?>
+<!-- <div id="flash"> --> <?php //$_SESSION["flash"] ?>  <!-- </div> -->
+
+ <?php
+//         unset($_SESSION["flash"]);
+       
+// }
+?>
+
 <html>
 <head>
 
@@ -15,6 +32,15 @@
  </div>
 
     <h2>Welcome to SarangFamily</h2>
+
+    <div class="hiuser">
+		<?php if (isset($_SESSION["username"])) { 
+	    	echo "<li> <a href ='#'> Hi!    "  . $_SESSION["username"]["firstname"] . "</a></li>";
+        } ?>
+        
+
+  
+	 </div>
 <div class ="buttonmargine">
          <a href="lifeInformation.php">
          	<button class="body-button" id="life-button">Life Information</button>
@@ -29,7 +55,6 @@
             <button class="body-button" id="health-button">Health & Beauty</button>
          </a>
 </div>
-
 
 
     <div class="footer-container">

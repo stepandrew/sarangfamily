@@ -111,15 +111,6 @@ h1 {
 }
 
 
-/*.header-container{
-	padding:20px;
-	margin:auto;
-	/*margin-bottom:20px;*/
-
-	/*border:1px solid #bcbcbc;}
-*/
-
-
 .signupinForm {
 	background-color:yellow;
 	font-weight:900;
@@ -175,7 +166,7 @@ div.gallery img {
 	background-color: plum;
 
 }
-.logout{
+.logout .logout{
 	border:3px solid orchid;
 	background-color: plum;
 }
@@ -191,10 +182,48 @@ div.gallery img {
 }
 #info{
 	color: brown;
+	
 }
 #infocandle{
 	color: cornflowerblue;
 }
-information{
+#flash{
+	background-color: #ffffcc;
+	border:1px dotted #ccccaa;
+	margin:0.5em;
+	padding: 0.5em;
 	
 }
+.hiuser{
+
+	background-color: white;
+	border:1px white;
+	margin:2em;
+	padding: 0.5em;
+}
+div.gallery {
+	margin: 5px;
+	border: 1px solid #ccc;
+	float: left;
+	width: 180px;
+	
+  }
+  
+  div.gallery:hover {
+	border: 1px solid #777;
+  }
+  
+  div.gallery img {
+	width: 100%;
+	height: auto;
+  }
+  
+  div.desc {
+	padding: 15px;
+	text-align: center;
+  }
+  .welcome{
+	color: #7b68ee;
+
+  }
+ 

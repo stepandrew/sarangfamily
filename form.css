@@ -1,0 +1,22 @@
+#email #password{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.sessionerr{
+    color: rebeccapurple;
+}
+ #errorwarn{
+    background-color: hotpink;
+}
+.message{
+    color: rebeccapurple;
+    border: salmon;
+ 
+}
+input[type=email] input[type=password]{
+    width: 40%;
+    padding: 10 px 20px;
+    margin: 5px 0;
+    display: inline-block;
+    box-sizing: border-box;
+} 

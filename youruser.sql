@@ -2,6 +2,7 @@ create database youruser;
 use youruser;
 select database();
 drop table Users;
+
 create table user(
 ID int auto_increment,
 email varchar(50) not null,
