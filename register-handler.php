@@ -1,5 +1,5 @@
 <?php
-session_start();
+	session_start();
 require_once 'Dao.php';
 require_once 'KLogger.php';
 
@@ -82,12 +82,10 @@ if(empty($errors)){
 
 	 if($valid == true){
 	
-		
+	
 			$_SESSION['register'] = true;
-			$rlogger->LogInfo("User register successful [{$email}]");
-
-
-    	
+			$rlogger->LogInfo("User register successful [{$email}]");	   
+			$password=hash("sha256", "test".$password);				
 			$dao->addUser($email, $password);
 			$dao->saveRegister($firstname, $lastname,$email,$password,$birthday);
 		

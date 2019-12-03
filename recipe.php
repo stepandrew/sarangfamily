@@ -8,8 +8,8 @@ session_start();
           	?>
    </div>
 <html>
-	<a href="https://10000recipe.com/bbs/1266" id= "recepi1"  >Back Jong-Won's recepies </h2>
-	<h3 id= "recepie2">This page is my favorite recepies link </h3>
+	<a href="https://10000recipe.com/bbs/1266" id= "recepi1" target="_blank" >Back Jong-Won's recepies </h2>
+	<h3 id= "recepie2" target="_blank">This page is my favorite recepies link </h3>
   
 </html>
 	<?php

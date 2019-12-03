@@ -32,4 +32,8 @@ function redirect ($url, $flash_message = null){
 	header("Location: $url");
 	die;
 }
+function hashingPassword($password){
+    $password=hash("sha256", $password."qwert12345asdfg");
+   return $password;
+}
 ?>

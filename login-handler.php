@@ -1,12 +1,15 @@
 <?php
-//session_start();
+session_start();
 require_once 'form_helper.php';
 require_once 'Dao.php';
 require_once 'KLogger.php';
 $logger = new KLogger("log.txt",KLogger::WARN );
 $email =  $_POST['email'];
 $password = $_POST['password'];
+
+
 $valid = true;
+
 
 $error=array();
 
@@ -17,7 +20,7 @@ function valid_length($field, $min, $max) {
  	return (strlen($trimmed) >= $min && strlen($trimmed) <= $max);
 	
 }
-if(!valid_length($password, 3, 120)){
+if(!valid_length($password, 3, 256)){
 	$error['password'] ="Please enter a password greater then 2.";
 	 $valid = false;
 }
@@ -45,12 +48,17 @@ if($valid){
 	$_SESSION['invalid'] = "Invalid email or password";
 }
 
+
 $dao= new Dao();
 
+//hashingPassword($password);
 try{
-	$user = $dao->getUsers($email,$password);
-	session_start();
+	//$password=hash("sha256", "test".$password);
+	//substr($password, 0, 50);
+	$user = $dao->getUsers($email,hash("sha256", "test".$password));
+//	session_start();
 	
+
 	$_SESSION['username'] = $dao->userExists($email);
 
 	ensure_logged_in();
@@ -78,6 +86,7 @@ try{
 		// $_SESSION['emailerror2'] = $error['emailerror2'];
 		// $_SESSION['emailerror3'] = $error['emailerror3'];
 		$_SESSION['password'] = $password;
+		
 		redirectError("login.php?error=true",$error,$presets);
 	 //  $dao->redirect("login.php" , "Login successful! Welcome back. ");
 	 }

@@ -4,19 +4,21 @@
 	
 	
 	class Dao{
-		//heroku old one damp-mountain-91968
-		//mysql://b1b2fd935ca956:340e5b69@us-cdbr-iron-east-05.cleardb.net/heroku_f4584639f739b09?reconnect=true
-		private $host = 'us-cdbr-iron-east-05.cleardb.net';	
-		private $db = 'heroku_f4584639f739b09';
-		private $user = 'b1b2fd935ca956';
-		private $pass = '340e5b69';
+		// private $host = 'us-cdbr-iron-east-05.cleardb.net';
+		
+		// //damp-mountain-91968		
+		// 		private $db = 'heroku_f4584639f739b09';
+		// //shrouded-sierra-40031 
+		// //private $db = 'heroku_58c5f9d8f127161';
+		// 		private $user = 'b1b2fd935ca956';
+		// 		  private $pass = '340e5b69';
 
 
-//heroku  new one https://sleepy-fortress-90334.herokuapp.com/home.php
-// 		private $host = 'us-cdbr-iron-east-05.cleardb.net';
-// 		private $db = 'heroku_6801655a5d8ebae';
-// 		private $user = 'bb4bda93968694';
-// 		private $pass = 'bad2b326';
+
+		private $host = 'us-cdbr-iron-east-05.cleardb.net';
+		private $db = 'heroku_6801655a5d8ebae';
+		private $user = 'bb4bda93968694';
+		private $pass = 'bad2b326';
 /**
  * Creates and returns a PDO connection using the database connection
  * url specified in the CLEARDB_DATABASE_URL environment variable.
@@ -33,6 +35,7 @@
 	}
 		public function addUser($email, $password){
 			$conn = $this->getConnection();
+			
 			$saveInput = "insert into user (email, password) value (:email, :password )";
 			$q=$conn->prepare($saveInput);
 			$q->bindParam(":email", $email);
@@ -55,6 +58,7 @@
 		// }
 		public function saveRegister($firstname, $lastname,$email,$password,$birthday){
 			$conn = $this->getConnection();
+	
 			$saveInput = "insert into register (firstname, lastname, email, password, birthday) values (:firstname, :lastname,:email,:password,:birthday)";
 			$q=$conn->prepare($saveInput);
 			$q->bindParam(":firstname", $firstname);
@@ -77,11 +81,16 @@
 	
 	public function getUsers($email,$password){
 		$conn=$this->getConnection();
+		
 		try{
-			$getuser= "select email, password from user where email = :email and password=:password";
+			substr($password, 0, 50);
+			$subpass = substr($password, 0, 50);
+		
+			$getuser= "select email, password from user where email=:email and password=:password";
 			$getq=$conn->prepare($getuser);
 			$getq->bindParam(":email", $email);
-			$getq->bindParam(":password", $password);
+			$getq->bindParam(":password", $subpass);
+			
 			$getq->execute();
 			$result=$getq->fetchAll();
 			return reset($result);

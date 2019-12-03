@@ -20,3 +20,11 @@ input[type=email] input[type=password]{
     display: inline-block;
     box-sizing: border-box;
 } 
+
+input.error, textarea.error{
+    border:1px dahed red;
+}
+label.error{
+    display:block;
+  color: red;
+}

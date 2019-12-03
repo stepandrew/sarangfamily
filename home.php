@@ -18,7 +18,16 @@ session_start();
 <html>
 <head>
 
-    	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+     
+      <style>
+    @import url('https://fonts.googleapis.com/css?family=Calistoga&display=swap');
+    #wel{
+      font-family: 'Calistoga', cursive;
+    }
+
+</style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 
 
 </head>
@@ -31,7 +40,7 @@ session_start();
 	?>
  </div>
 
-    <h2>Welcome to SarangFamily</h2>
+    <h2 id="wel">Welcome to SarangFamily</h2>
 
     <div class="hiuser">
 		<?php if (isset($_SESSION["username"])) { 

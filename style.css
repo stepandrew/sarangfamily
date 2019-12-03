@@ -60,6 +60,7 @@ body{
 }
 .buttonmargine{
 	margin-bottom: 50px;
+
 }
 #life-button{
 	background-color: #ff674f;
@@ -110,6 +111,9 @@ h1 {
   font-size: 50px;
 }
 
+#wel{
+	font-family: 'Calistoga', cursive;
+}
 
 .signupinForm {
 	background-color:yellow;
@@ -143,20 +147,8 @@ letter-spacing: .1em;
 }
 
 */
-div.gallery {
-  margin: 5px;
-  border: 1px solid #ccc;
-  float: left;
-  width: 180px;
-}
-div.gallery:hover {
-  border: 1px solid #777;
-}
 
-div.gallery img {
-  width: 100%;
-  height: auto;
-}
+
 .granted{
 	border: 3px solid greenyellow;
 	
@@ -201,29 +193,21 @@ div.gallery img {
 	margin:2em;
 	padding: 0.5em;
 }
-div.gallery {
-	margin: 5px;
-	border: 1px solid #ccc;
-	float: left;
-	width: 180px;
-	
-  }
-  
-  div.gallery:hover {
-	border: 1px solid #777;
-  }
-  
-  div.gallery img {
-	width: 100%;
-	height: auto;
-  }
-  
-  div.desc {
-	padding: 15px;
-	text-align: center;
-  }
+
   .welcome{
 	color: #7b68ee;
 
+  }
+  
+  #panel, #flip {
+	padding: 5px;
+	text-align: center;
+	background-color: #e5eecc;
+	border: solid 1px #c3c3c3;
+  }
+  
+  #panel {
+	padding: 50px;
+	display: none;
   }
  

@@ -11,9 +11,16 @@ if(isset($_SESSION['setup'])){
 
 ?>
 <html>
+  <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src = "jquery-3.4.1.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery-3.validation.min.js" ></script>
+	<script src= "validation.js" type="text/javascript"></script>
+
   <style>
  .erroroccur{color: red;}
     </style>
+  </head>
  <body>
 	 <div class="header-container">
           	<?php
@@ -49,12 +56,12 @@ if(isset($_SESSION['setup'])){
             <br><br>
    
       <label for ="birthday">   Birthday: </label>
-        <input type="date" name="birthday">
+        <input type="date" name="birthday"/>
 
         <br>
         <br>
 			<button type="submit" value ="Submit">Submit</button>
-        <button type="reset" >Reset</button>
+        <button type="reset">Reset</button>
 
 
       <div class="registererror">
@@ -62,28 +69,33 @@ if(isset($_SESSION['setup'])){
         <p>
               <?php if (isset($_SESSION['errors']['firstname'])) { ?>
               <span class="erroroccur" ><?php echo $_SESSION['errors']['firstname'] ?></span>
+               
               <?php } ?>
          </p>
          <p>
           <?php if (isset($_SESSION['errors']['emailError'])) { ?>
               <span class="erroroccur"><?php echo $_SESSION['errors']['emailError'] ?></span>
+             
               <?php } ?>
           </p>
           <P>
           <?php if (isset($_SESSION['errors']['passwordMatchError'])) { ?>
               <span class="erroroccur"><?php echo $_SESSION['errors']['passwordMatchError'] ?></span>
+             
               <?php } ?>
         
           </p>
           <P>
           <?php if (isset($_SESSION['errors']['messages'])) { ?>
               <span class="erroroccur"><?php echo $_SESSION['errors']['messages'] ?></span>
+             
               <?php } ?>
         
           </p>
           <P>
           <?php if (isset($_SESSION['errors']['emailexist'])) { ?>
               <span class="erroroccur"><?php echo $_SESSION['errors']['emailexist'] ?></span>
+            
               <?php } ?>
         
           </p>
@@ -92,7 +104,8 @@ if(isset($_SESSION['setup'])){
 			 $errors = isset($_GET['errors']) ? $_GET['errors'] : false;			
 			 if($errors == true){ 			 
 		 	?>
-			 <span id="errorwarn"> Oh! no, your register is not completed!</span>
+       <span id="errorwarn"> Oh! no, your register is not completed!</span>
+      
 			 <?php } ?>
     </div>
    
