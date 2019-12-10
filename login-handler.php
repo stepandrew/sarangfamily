@@ -51,11 +51,11 @@ if($valid){
 
 $dao= new Dao();
 
-//hashingPassword($password);
+
 try{
-	//$password=hash("sha256", "test".$password);
-	//substr($password, 0, 50);
-	$user = $dao->getUsers($email,hash("sha256", "test".$password));
+	$password=hash("sha256", "test".$password);
+	
+	$user = $dao->getUsers($email,$password);
 //	session_start();
 	
 

@@ -83,13 +83,11 @@
 		$conn=$this->getConnection();
 		
 		try{
-			substr($password, 0, 50);
-			$subpass = substr($password, 0, 50);
 		
 			$getuser= "select email, password from user where email=:email and password=:password";
 			$getq=$conn->prepare($getuser);
 			$getq->bindParam(":email", $email);
-			$getq->bindParam(":password", $subpass);
+			$getq->bindParam(":password", $password);
 			
 			$getq->execute();
 			$result=$getq->fetchAll();
